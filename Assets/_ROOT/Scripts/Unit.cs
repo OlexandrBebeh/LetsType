@@ -8,6 +8,7 @@ namespace _ROOT.Scripts
     {
         [SerializeField] private TMP_Text label;
 
+        private bool isActive = false;
         public char TargetChar { get; private set; }
 
         [SerializeField]
@@ -19,11 +20,19 @@ namespace _ROOT.Scripts
             this.inputProvider = inputProvider;
             inputProvider.OnInput += OnInput;
             label.SetText(targetChar.ToString());
+            label.faceColor = Color.red;
         }
+
+        public void MakeAvailable()
+        {
+            isActive = true;
+            label.faceColor = Color.blue;
+        }
+        
 
         private void OnInput(char inputChar)
         {
-            if (inputChar == TargetChar)
+            if (inputChar == TargetChar && isActive)
             {
                 Die();
             }

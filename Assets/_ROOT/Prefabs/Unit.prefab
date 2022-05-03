@@ -63,7 +63,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 400dfb6243b84874aa7e84d4e2437fd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 3
+  speed: 8
 --- !u!50 &-35167780777036452
 Rigidbody2D:
   serializedVersion: 4
@@ -176,8 +176,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+    rgba: 4280624639
+  m_fontColor: {r: 1, g: 0.14528298, b: 0.14528298, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:

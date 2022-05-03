@@ -6,12 +6,20 @@ namespace _ROOT.Scripts
 {
     public class Character : MonoBehaviour
     {
-        [SerializeField] private int hearts;
+        
+        [SerializeField] public int MaxHearts = 5;
+        
+        [SerializeField] public int hearts;
+
+        [SerializeField] public int charsToRestoreHeart = 10;
+        private void Start()
+        {
+            hearts = MaxHearts;
+        }
 
         private void OnTriggerEnter2D(Collider2D other)
         {
-            Destroy(other.gameObject);
-            TakeAHit();
+            TryToDestroy(other);
         }
 
         private void TakeAHit()
@@ -20,6 +28,15 @@ namespace _ROOT.Scripts
             if (hearts < 0)
             {
                 Destroy(gameObject);
+            }
+        }
+        
+        private void TryToDestroy(Collider2D other)
+        {
+            if (other.GetComponentInParent<Unit>() is not null)
+            {
+                Destroy(other.gameObject);
+                TakeAHit();
             }
         }
     }
