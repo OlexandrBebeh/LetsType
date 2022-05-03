@@ -13,7 +13,7 @@ namespace _ROOT.Scripts.Dictionary
         {
             var file = Resources.Load<TextAsset>("words");
  
-            IEnumerable<string> lines = file.text.Split("\n");
+            IEnumerable<string> lines = file.text.Split("\r\n");
 
             foreach (var line in lines)
             {
