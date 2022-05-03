@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace _ROOT.Scripts.Interface
 {
-    public class HeartInterface : MonoBehaviour
+    public class FightHeartInterface : MonoBehaviour
     {
         [SerializeField] private TMP_Text label;
         

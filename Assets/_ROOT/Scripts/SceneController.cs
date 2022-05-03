@@ -10,6 +10,9 @@ namespace _ROOT.Scripts
 
         [SerializeField] private string fightScene;
 
+        [SerializeField] private string levelScene;
+
+        private int currentLevel;
         public void LoadMenu()
         {
             LoadScene(menuScene);
@@ -28,6 +31,35 @@ namespace _ROOT.Scripts
         public void UnloadFightScene()
         {
             UnloadScene(fightScene);
+        }
+        
+        public void SwitchToLevelScene(int level)
+        {
+            string str;
+            if (level < 10)
+            {
+                str = levelScene + "0" + level;
+            }
+            else
+            {
+                str = levelScene + level;
+            }
+            LoadScene(str);
+            currentLevel = level;
+        }
+
+        public void UnloadLevelScene(int level)
+        {
+            string str;
+            if (level < 10)
+            {
+                str = levelScene + "0" + level;
+            }
+            else
+            {
+                str = levelScene + level;
+            }
+            UnloadScene(str);
         }
 
         private void LoadScene(string sceneName)

@@ -7,7 +7,12 @@ namespace _ROOT.Scripts.Menus
     {
         public void StartGame()
         {
-            GameStarter.Instance.StartGame();
+            GameController.Instance.StartGame();
+        }
+        
+        public void StartGame(int level)
+        {
+            GameController.Instance.StartGame(level);
         }
     }
 }

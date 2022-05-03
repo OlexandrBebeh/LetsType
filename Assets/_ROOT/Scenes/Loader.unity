@@ -290,6 +290,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   menuScene: Menu
   fightScene: Fighting
+  levelScene: Level_
 --- !u!114 &417272136
 MonoBehaviour:
   m_ObjectHideFlags: 0
