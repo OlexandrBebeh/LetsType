@@ -2,7 +2,7 @@
 using System.Linq;
 using UnityEngine;
 
-namespace _ROOT.Scripts
+namespace _ROOT.Scripts.Fight
 {
     public class InputProvider : MonoBehaviour
     {

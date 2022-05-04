@@ -1,8 +1,10 @@
 ﻿using System;
+using _ROOT.Scripts.Game;
+using _ROOT.Scripts.GlobalWorld;
 using Unity.VisualScripting;
 using UnityEngine;
 
-namespace _ROOT.Scripts
+namespace _ROOT.Scripts.Fight
 {
     public class Character : MonoBehaviour
     {
@@ -25,17 +27,19 @@ namespace _ROOT.Scripts
         private void TakeAHit()
         {
             hearts--;
-            if (hearts < 0)
+            if (hearts == 0)
             {
+                GameEvents.StartFightEndEvent(FightResults.Lose);
                 Destroy(gameObject);
             }
         }
         
         private void TryToDestroy(Collider2D other)
         {
-            if (other.GetComponentInParent<Unit>() is not null)
+            var unit = other.GetComponentInParent<Unit>();
+            if (unit is not null)
             {
-                Destroy(other.gameObject);
+                unit.Die();
                 TakeAHit();
             }
         }

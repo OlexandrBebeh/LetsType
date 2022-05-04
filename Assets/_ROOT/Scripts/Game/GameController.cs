@@ -1,4 +1,7 @@
-﻿using _ROOT.Scripts.Tools;
+﻿using System.Threading.Tasks;
+using _ROOT.Scripts.GlobalWorld;
+using _ROOT.Scripts.GlobalWorld.Enemies;
+using _ROOT.Scripts.Tools;
 using UnityEngine;
 
 namespace _ROOT.Scripts.Game
@@ -7,6 +10,10 @@ namespace _ROOT.Scripts.Game
     {
         [SerializeField] private SceneController sceneController;
 
+        [SerializeField] private CameraController cameraController;
+
+        [SerializeField] private PlayerProvider playerProvider;
+        
         private GameState state;
         
         private int currentLevel;
@@ -15,6 +22,21 @@ namespace _ROOT.Scripts.Game
         {
             sceneController.UnloadMenu();
             sceneController.SwitchToFightScene();
+            state = GameState.fight;
+        }
+        
+        public void StartFight()
+        {
+            sceneController.SwitchToFightScene();
+            cameraController.DisableWorldCamera();
+            state = GameState.fight;
+        }
+        
+        public void StartFight(Enemy enemy)
+        {
+            sceneController.SwitchToFightScene();
+            cameraController.DisableWorldCamera();
+            FightController.Instance.SetEnemy(enemy);
             state = GameState.fight;
         }
         
@@ -32,7 +54,7 @@ namespace _ROOT.Scripts.Game
             {
                case GameState.fight:
                    sceneController.UnloadFightScene();
-                   sceneController.SwitchToLevelScene(currentLevel);
+                   cameraController.EnableWorldCamera();
                    state = GameState.level;
 
                    break;
@@ -43,8 +65,7 @@ namespace _ROOT.Scripts.Game
 
                    break;
                case GameState.menu:
-                   sceneController.UnloadLevelScene(currentLevel);
-                   sceneController.LoadMenu();
+                   sceneController.UnloadMenu();
                    state = GameState.load;
 
                    break;

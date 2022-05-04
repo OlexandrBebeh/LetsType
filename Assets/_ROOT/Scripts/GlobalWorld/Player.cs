@@ -1,6 +1,6 @@
 ﻿using System;
 using _ROOT.Scripts.Game;
-using _ROOT.Scripts.GlobalWorld.Enemy;
+using _ROOT.Scripts.GlobalWorld.Enemies;
 using UnityEngine;
 
 namespace _ROOT.Scripts.GlobalWorld
@@ -13,9 +13,29 @@ namespace _ROOT.Scripts.GlobalWorld
 
         [SerializeField] public float Speed;
 
+        [SerializeField] public float ShiftSpeed;
+
+        private bool IsSprint;
+        
+        public bool CanMove;
+
+        private void Awake()
+        {
+            CanMove = true;
+        }
+
         private void Update()
         {
-            if (Input.GetButton("Horizontal") || Input.GetButton("Vertical"))
+            if (Input.GetKey(KeyCode.LeftShift))
+            {
+                IsSprint = true;
+            }
+            else
+            {
+                IsSprint = false;
+            }
+            
+            if ((Input.GetButton("Horizontal") || Input.GetButton("Vertical")) && CanMove)
             {
                 Move();
             }
@@ -24,26 +44,44 @@ namespace _ROOT.Scripts.GlobalWorld
         private void Move()
         {
             Vector3 dir = transform.right * Input.GetAxis("Horizontal") + transform.up * Input.GetAxis("Vertical");
+            var speed = Speed;
 
-            transform.position = Vector3.MoveTowards(transform.position, transform.position + dir, Speed * Time.deltaTime);
+            if (IsSprint)
+            {
+                speed *= ShiftSpeed;
+            }
+                
+            transform.position = Vector3.MoveTowards(transform.position, transform.position + dir, speed * Time.deltaTime);
         }
 
-        private void OnCollisionEnter(Collision other)
+        private void OnTriggerEnter2D(Collider2D other)
         {
-            if (CheckForFight(other))
+            var enemy = other.gameObject.GetComponentInParent<Enemy>();
+            if (CheckForFight(enemy))
             {
-                GameController.Instance.StartGame();
+                PreparePlayerForFight();
+                GameController.Instance.StartFight(enemy);
             }
         }
 
-        private bool CheckForFight(Collision other)
+        private bool CheckForFight(Enemy enemy)
         {
-            if (other.gameObject.GetComponentInParent<EnemyI>())
-            {
-                return true;
-            }
+            return enemy;
+        }
 
-            return false;
+        private void PreparePlayerForFight()
+        {
+            CanMove = false;
+            PlayerParameters.Instance.SetMaxHearts(Hearts);
+        }
+
+        public void FightEnd(Enemy enemy, FightResults res)
+        {
+            CanMove = true;
+            if (res == FightResults.Win)
+            {
+                Gold += enemy.Reward;
+            }
         }
     }
 }

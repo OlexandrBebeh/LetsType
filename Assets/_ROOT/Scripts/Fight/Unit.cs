@@ -2,25 +2,31 @@ using System;
 using TMPro;
 using UnityEngine;
 
-namespace _ROOT.Scripts
+namespace _ROOT.Scripts.Fight
 {
     public class Unit : MonoBehaviour
     {
         [SerializeField] private TMP_Text label;
 
-        private bool isActive = false;
+        [SerializeField] private InputProvider inputProvider;
+
+        public event Action<Unit> OnDeath;
+
+
         public char TargetChar { get; private set; }
 
-        [SerializeField]
-        private InputProvider inputProvider;
-        
-        public void Init(char targetChar, InputProvider inputProvider)
+        private Vector3 Target;
+
+        private bool isActive = false;
+
+        public void Init(char targetChar, InputProvider inputProvider, Vector3 target)
         {
             TargetChar = targetChar;
             this.inputProvider = inputProvider;
             inputProvider.OnInput += OnInput;
             label.SetText(targetChar.ToString());
             label.faceColor = Color.red;
+            Target = target;
         }
 
         public void MakeAvailable()
@@ -28,7 +34,7 @@ namespace _ROOT.Scripts
             isActive = true;
             label.faceColor = Color.blue;
         }
-        
+
 
         private void OnInput(char inputChar)
         {
@@ -38,14 +44,20 @@ namespace _ROOT.Scripts
             }
         }
 
-        private void Die()
+        public void Die()
         {
+            OnDeath?.Invoke(this);
             Destroy(gameObject);
         }
 
         private void OnDestroy()
         {
             inputProvider.OnInput -= OnInput;
+        }
+
+        public Vector3 GetTarget()
+        {
+            return Target;
         }
     }
 }

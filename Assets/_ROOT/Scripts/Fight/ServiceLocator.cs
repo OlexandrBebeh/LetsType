@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace _ROOT.Scripts
+namespace _ROOT.Scripts.Fight
 {
     public class ServiceLocator
     {
-        private static List<object> services = new List<object>();
+        private static List<object> services = new ();
 
         public static void Register<T>(T service)
         {
