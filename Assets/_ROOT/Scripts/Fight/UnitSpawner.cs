@@ -67,7 +67,6 @@ namespace _ROOT.Scripts.Fight
 
                 spawnTimeWord = spawnTimeLetter * word.Length + 1;
                 yield return new WaitForSeconds(spawnTimeWord);
-                ;
             }
         }
 

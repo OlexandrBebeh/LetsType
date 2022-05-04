@@ -24,11 +24,11 @@ namespace _ROOT.Scripts.GlobalWorld
         {
             if (res == FightResults.Win)
             {
-                PlayerProvider.Instance.Player.FightEnd(enemy, res);
                 Destroy(enemy.gameObject);
             }
+            PlayerProvider.Instance.Player.FightEnd(enemy, res);
             GameEvents.OnFightEnd -= FightResult;
-            GameController.Instance.Exit();
+            GameController.Instance.ExitFight();
 
         }
     }

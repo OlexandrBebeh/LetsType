@@ -71,5 +71,10 @@ namespace _ROOT.Scripts
         {
             SceneManager.UnloadScene(sceneName);
         }
+        
+        public void UnloadFightSceneAsync()
+        {
+            SceneManager.UnloadSceneAsync(fightScene);
+        }
     }
 }

@@ -71,5 +71,12 @@ namespace _ROOT.Scripts.Game
                    break;
             }
         }
+
+        public void ExitFight()
+        {
+            sceneController.UnloadFightSceneAsync();
+            cameraController.EnableWorldCamera();
+            state = GameState.level;
+        }
     }
 }
