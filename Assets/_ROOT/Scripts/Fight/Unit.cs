@@ -7,9 +7,7 @@ namespace _ROOT.Scripts.Fight
     public class Unit : MonoBehaviour
     {
         [SerializeField] private TMP_Text label;
-
-        [SerializeField] private InputProvider inputProvider;
-
+        
         public event Action<Unit> OnDeath;
 
 
@@ -17,16 +15,15 @@ namespace _ROOT.Scripts.Fight
 
         private Vector3 Target;
 
-        private bool isActive = false;
+        public bool isActive;
 
-        public void Init(char targetChar, InputProvider inputProvider, Vector3 target)
+        public void Init(char targetChar, Vector3 target)
         {
             TargetChar = targetChar;
-            this.inputProvider = inputProvider;
-            inputProvider.OnInput += OnInput;
             label.SetText(targetChar.ToString());
             label.faceColor = Color.red;
             Target = target;
+            isActive = false;
         }
 
         public void MakeAvailable()
@@ -48,11 +45,6 @@ namespace _ROOT.Scripts.Fight
         {
             OnDeath?.Invoke(this);
             Destroy(gameObject);
-        }
-
-        private void OnDestroy()
-        {
-            inputProvider.OnInput -= OnInput;
         }
 
         public Vector3 GetTarget()

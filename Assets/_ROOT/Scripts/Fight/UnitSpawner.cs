@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using _ROOT.Scripts.Dictionary;
 using _ROOT.Scripts.Game;
 using _ROOT.Scripts.GlobalWorld;
@@ -43,7 +44,7 @@ namespace _ROOT.Scripts.Fight
         {
             var waitLetter = new WaitForSeconds(spawnTimeLetter);
             wordsLeft = wordsForSpawn;
-
+            inputProvider.OnInput += OnInput;
             while (true)
             {
                 var word = GetWord();
@@ -54,7 +55,7 @@ namespace _ROOT.Scripts.Fight
                 {
                     yield return waitLetter;
                     var unit = Instantiate(unitPrefab, position, Quaternion.identity, transform);
-                    unit.Init(c, inputProvider, character.transform.position);
+                    unit.Init(c, character.transform.position);
                     spawnedUnits.Add(unit);
                     unit.OnDeath += OnUnitDeath;
                 }
@@ -68,6 +69,7 @@ namespace _ROOT.Scripts.Fight
                 spawnTimeWord = spawnTimeLetter * word.Length + 1;
                 yield return new WaitForSeconds(spawnTimeWord);
             }
+            inputProvider.OnInput -= OnInput;
         }
 
         private void OnUnitDeath(Unit unit)
@@ -120,6 +122,16 @@ namespace _ROOT.Scripts.Fight
         public void StartSpawn()
         {
             StartCoroutine(SpawnRoutine());        
+        }
+        
+        private void OnInput(char inputChar)
+        {
+            if (spawnedUnits.Count != 0 
+                && inputChar == spawnedUnits.First().TargetChar 
+                && spawnedUnits.First().isActive)
+            {
+                spawnedUnits.First().Die();
+            }
         }
     }
 }
