@@ -1,25 +1,24 @@
 ﻿using System;
 using _ROOT.Scripts.Game;
 using _ROOT.Scripts.GlobalWorld.Enemies;
+using _ROOT.Scripts.Saves;
+using _ROOT.Scripts.Saves.Player;
+using _ROOT.Scripts.Tools;
 using UnityEngine;
 
 namespace _ROOT.Scripts.GlobalWorld
 {
     public class Player : MonoBehaviour
     {
-        [SerializeField] public int Hearts;
-        
-        [SerializeField] public int Gold;
-
         [SerializeField] public float Speed;
 
         [SerializeField] public float ShiftSpeed;
-        
-        [SerializeField] public float AttackRange;
 
         private bool IsSprint;
-        
+
         public bool CanMove;
+
+        private Vector2 desireMovement;
 
         private void Awake()
         {
@@ -28,16 +27,15 @@ namespace _ROOT.Scripts.GlobalWorld
 
         private void Update()
         {
-            if (Input.GetKey(KeyCode.LeftShift))
-            {
-                IsSprint = true;
-            }
-            else
-            {
-                IsSprint = false;
-            }
-            
-            if ((Input.GetButton("Horizontal") || Input.GetButton("Vertical")) && CanMove)
+            IsSprint = Input.GetKey(KeyCode.LeftShift);
+            var horizontalMovement = Input.GetAxis("Horizontal");
+            var verticalMovement = Input.GetAxis("Vertical");
+            desireMovement = new Vector2(horizontalMovement, verticalMovement);
+        }
+
+        private void FixedUpdate()
+        {
+            if (CanMove)
             {
                 Move();
             }
@@ -45,15 +43,14 @@ namespace _ROOT.Scripts.GlobalWorld
 
         private void Move()
         {
-            Vector3 dir = transform.right * Input.GetAxis("Horizontal") + transform.up * Input.GetAxis("Vertical");
+            Vector3 direction = desireMovement.normalized;
             var speed = Speed;
-
             if (IsSprint)
             {
                 speed *= ShiftSpeed;
             }
-                
-            transform.position = Vector3.MoveTowards(transform.position, transform.position + dir, speed * Time.deltaTime);
+
+            transform.position += direction * speed * Time.fixedDeltaTime;
         }
 
         private void OnTriggerEnter2D(Collider2D other)
@@ -76,13 +73,15 @@ namespace _ROOT.Scripts.GlobalWorld
             CanMove = false;
         }
 
-        public void FightEnd(Enemy enemy, FightResults res)
+        public void FightEnd()
         {
             CanMove = true;
-            if (res == FightResults.Win)
-            {
-                Gold += enemy.Reward;
-            }
+        }
+        
+        [EditorButton]
+        public void AddGold()
+        {
+            PlayerSavable.Instance.Gold += 100;
         }
     }
 }

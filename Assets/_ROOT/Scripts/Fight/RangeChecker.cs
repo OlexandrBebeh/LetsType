@@ -1,6 +1,4 @@
-﻿using System;
-using _ROOT.Scripts.Game;
-using Unity.VisualScripting;
+﻿using _ROOT.Scripts.Saves.Player;
 using UnityEngine;
 
 namespace _ROOT.Scripts.Fight
@@ -23,9 +21,8 @@ namespace _ROOT.Scripts.Fight
 
         public void Init()
         {
-            var parent = GetComponentInParent<Transform>();
-            var range = PlayerProvider.Instance.Player.AttackRange;
-            parent.localScale.Set(range,range,0);
+            var range = PlayerSavable.Instance.Range;
+            transform.localScale = Vector3.one * range;
         }
     }
 }

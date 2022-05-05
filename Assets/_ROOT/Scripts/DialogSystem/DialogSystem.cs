@@ -19,21 +19,6 @@ namespace _ROOT.Scripts.DialogSystem
             StartDialog();
         }
 
-        private void Update()
-        {
-            /*if (Input.GetMouseButtonDown(0))
-            {
-                if (textMeshProUGUI.text)
-                {
-                    
-                }
-                else
-                {
-                    
-                }
-            }*/
-        }
-
         private void StartDialog()
         {
             index = 0;

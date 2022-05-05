@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using _ROOT.Scripts.Saves;
+using UnityEngine;
 
 namespace _ROOT.Scripts.Game
 {
@@ -8,8 +9,19 @@ namespace _ROOT.Scripts.Game
 
         private void Awake()
         {
-            // process Saves before game start
+            PrepareSaves();
+            LoadSaves();
             sceneController.LoadMenu();
+        }
+
+        private void PrepareSaves()
+        {
+            SaveController.Instance.PrepareSave();
+        }
+
+        private void LoadSaves()
+        {
+            SaveController.Instance.LoadSave();
         }
     }
 }

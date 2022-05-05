@@ -1,5 +1,7 @@
 ﻿using _ROOT.Scripts.Game;
 using _ROOT.Scripts.GlobalWorld.Enemies;
+using _ROOT.Scripts.Saves;
+using _ROOT.Scripts.Saves.Player;
 using _ROOT.Scripts.Tools;
 using UnityEngine;
 
@@ -24,11 +26,14 @@ namespace _ROOT.Scripts.GlobalWorld
         {
             if (res == FightResults.Win)
             {
+                PlayerSavable.Instance.Gold += enemy.Reward;
                 Destroy(enemy.gameObject);
             }
-            PlayerProvider.Instance.Player.FightEnd(enemy, res);
+            PlayerProvider.Instance.Player.FightEnd();
+            
             GameEvents.OnFightEnd -= FightResult;
             GameController.Instance.ExitFight();
+            SaveController.Instance.SaveState();
 
         }
     }
