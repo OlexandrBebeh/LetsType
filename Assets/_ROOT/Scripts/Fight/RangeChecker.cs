@@ -1,4 +1,5 @@
 ﻿using System;
+using _ROOT.Scripts.Game;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -13,10 +14,18 @@ namespace _ROOT.Scripts.Fight
 
         private void ChangeState(Collider2D other)
         {
-            if (other.GetComponentInParent<Unit>() is not null)
+            var unit = other.GetComponentInParent<Unit>();
+            if (unit)
             {
-                other.GetComponentInParent<Unit>().MakeAvailable();
+                unit.MakeAvailable();
             }
+        }
+
+        public void Init()
+        {
+            var parent = GetComponentInParent<Transform>();
+            var range = PlayerProvider.Instance.Player.AttackRange;
+            parent.localScale.Set(range,range,0);
         }
     }
 }

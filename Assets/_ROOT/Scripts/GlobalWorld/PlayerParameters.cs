@@ -4,53 +4,13 @@ namespace _ROOT.Scripts.GlobalWorld
 {
     public class PlayerParameters : Singleton<PlayerParameters>
     {
-        private int MaxHearts;
-        
-        private int GoldAmount;
+        public int MaxHearts { get; set; }
 
-        private float HitZoneRagius;
-        
-        private FightResults LastFightResult;
+        public int GoldAmount { get; set; }
 
+        public float HitZoneRagius { get; set; }
+        
+        public bool NeedReadFrom { get; set; }
 
-        public void SetMaxHearts(int hearts)
-        {
-            MaxHearts = hearts;
-        }
-        
-        public int GetMaxHearts()
-        {
-            return MaxHearts;
-        }
-        
-        public void SetGoldAmount(int gold)
-        {
-            GoldAmount = gold;
-        }
-        
-        public int GetGoldAmount()
-        {
-            return GoldAmount;
-        }
-        
-        public void SetHitZoneRadius(float radius)
-        {
-            HitZoneRagius = radius;
-        }
-        
-        public float GetHitZoneRadius()
-        {
-            return HitZoneRagius;
-        }
-        
-        public void SetFightResult(FightResults res)
-        {
-            LastFightResult = res;
-        }
-        
-        public FightResults GetFightResult()
-        {
-            return LastFightResult;
-        }
     }
 }

@@ -7,7 +7,12 @@ namespace _ROOT.Scripts.Fight
     public class Unit : MonoBehaviour
     {
         [SerializeField] private TMP_Text label;
+
+        [SerializeField] public float speed;
+
+        public bool IsRestoreUnit;
         
+        public bool MakeAllAvailable;
         public event Action<Unit> OnDeath;
 
 
@@ -17,13 +22,14 @@ namespace _ROOT.Scripts.Fight
 
         public bool isActive;
 
-        public void Init(char targetChar, Vector3 target)
+        public void Init(char targetChar, Vector3 target, float _speed)
         {
             TargetChar = targetChar;
             label.SetText(targetChar.ToString());
             label.faceColor = Color.red;
             Target = target;
             isActive = false;
+            speed = _speed;
         }
 
         public void MakeAvailable()

@@ -48,6 +48,13 @@ namespace _ROOT.Scripts.Game
             currentLevel = level;
         }
         
+        public void StartNextLevel()
+        {
+            sceneController.UnloadLevelScene(currentLevel);
+            currentLevel++;
+            sceneController.SwitchToLevelScene(currentLevel);
+        }
+        
         public void Exit()
         {
             switch (state)
@@ -74,7 +81,7 @@ namespace _ROOT.Scripts.Game
 
         public void ExitFight()
         {
-            sceneController.UnloadFightSceneAsync();
+            sceneController.UnloadFightScene();
             cameraController.EnableWorldCamera();
             state = GameState.level;
         }

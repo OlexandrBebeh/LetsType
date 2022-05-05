@@ -174,6 +174,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   character: {fileID: 680288931}
   unitSpawner: {fileID: 1166224060}
+  rangeChecker: {fileID: 1615131147}
 --- !u!1 &37383736
 GameObject:
   m_ObjectHideFlags: 0
@@ -664,7 +665,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MaxHearts: 5
   hearts: 2
-  charsToRestoreHeart: 10
 --- !u!58 &680288932
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -1124,11 +1124,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnTimeLetter: 1
   spawnTimeWord: 5
-  wordsForSpawn: 0
+  letterSpawnDelim: 3
+  restoreUnit: 0
+  availableUnit: 0
   unitPrefab: {fileID: 3105109620980301939, guid: 809feaa994f965341881abd9a8880dcc, type: 3}
   inputProvider: {fileID: 1429838160}
   character: {fileID: 680288931}
-  letterSpawnDelim: 3
 --- !u!4 &1166224061
 Transform:
   m_ObjectHideFlags: 0

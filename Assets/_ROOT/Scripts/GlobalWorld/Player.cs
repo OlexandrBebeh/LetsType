@@ -14,6 +14,8 @@ namespace _ROOT.Scripts.GlobalWorld
         [SerializeField] public float Speed;
 
         [SerializeField] public float ShiftSpeed;
+        
+        [SerializeField] public float AttackRange;
 
         private bool IsSprint;
         
@@ -72,7 +74,6 @@ namespace _ROOT.Scripts.GlobalWorld
         private void PreparePlayerForFight()
         {
             CanMove = false;
-            PlayerParameters.Instance.SetMaxHearts(Hearts);
         }
 
         public void FightEnd(Enemy enemy, FightResults res)

@@ -3,6 +3,7 @@ using System.Linq;
 using _ROOT.Scripts.Game;
 using _ROOT.Scripts.GlobalWorld;
 using _ROOT.Scripts.Settings;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace _ROOT.Scripts.Fight
@@ -12,6 +13,8 @@ namespace _ROOT.Scripts.Fight
         [SerializeField] public Character character;
 
         [SerializeField] public UnitSpawner unitSpawner;
+
+        [SerializeField] public RangeChecker rangeChecker;
 
         private EnemySettings enemySettings;
 
@@ -24,6 +27,8 @@ namespace _ROOT.Scripts.Fight
         public void StartFight(string enemyId)
         {
             var stats = enemySettings.stats.First(e => e.id == enemyId);
+            character.Init();
+            rangeChecker.Init();
             unitSpawner.Init(stats);
             unitSpawner.StartSpawn();
         }

@@ -17,8 +17,12 @@ namespace _ROOT.Scripts.Fight
         [SerializeField] private float spawnTimeLetter;
 
         [SerializeField] private float spawnTimeWord;
+        
+        [SerializeField] public int letterSpawnDelim;
 
-        [SerializeField] private int wordsForSpawn;
+        [SerializeField] public float restoreUnit;
+        
+        [SerializeField] public float availableUnit;
 
         [SerializeField] private Unit unitPrefab;
 
@@ -26,24 +30,22 @@ namespace _ROOT.Scripts.Fight
 
         [SerializeField] public Character character;
 
-        [SerializeField] public int letterSpawnDelim;
-
+        private EnemyStats enemyStats;
+        
         private WordsGenerator wordsGenerator;
 
         private Camera camera;
-
-        private List<int> wordsLength;
-
+        
         private int wordsLeft;
 
         private bool finishSpawning;
 
-        private List<Unit> spawnedUnits = new List<Unit>();
+        private List<Unit> spawnedUnits;
 
         private IEnumerator SpawnRoutine()
         {
             var waitLetter = new WaitForSeconds(spawnTimeLetter);
-            wordsLeft = wordsForSpawn;
+            wordsLeft = enemyStats.wordsAmount;
             inputProvider.OnInput += OnInput;
             while (true)
             {
@@ -55,7 +57,7 @@ namespace _ROOT.Scripts.Fight
                 {
                     yield return waitLetter;
                     var unit = Instantiate(unitPrefab, position, Quaternion.identity, transform);
-                    unit.Init(c, character.transform.position);
+                    unit.Init(c, character.transform.position, enemyStats.speed);
                     spawnedUnits.Add(unit);
                     unit.OnDeath += OnUnitDeath;
                 }
@@ -69,7 +71,6 @@ namespace _ROOT.Scripts.Fight
                 spawnTimeWord = spawnTimeLetter * word.Length + 1;
                 yield return new WaitForSeconds(spawnTimeWord);
             }
-            inputProvider.OnInput -= OnInput;
         }
 
         private void OnUnitDeath(Unit unit)
@@ -79,13 +80,14 @@ namespace _ROOT.Scripts.Fight
             
             if (IsFinishSpawning())
             {
+                inputProvider.OnInput -= OnInput;
                 GameEvents.StartFightEndEvent(FightResults.Win);
             }
         }
 
         private string GetWord()
         {
-            return wordsGenerator.GetWord(wordsLength[(int) (Random.value * wordsLength.Count) % wordsLength.Count]);
+            return wordsGenerator.GetWord(enemyStats.wordsLength[(int) (Random.value * enemyStats.wordsLength.Count) % enemyStats.wordsLength.Count]);
         }
 
         private Vector3 GetRandomPosition()
@@ -111,11 +113,11 @@ namespace _ROOT.Scripts.Fight
 
         public void Init(EnemyStats stats)
         {
+            spawnedUnits = new List<Unit>();
             camera = Camera.main;
             wordsGenerator = new WordsGenerator();
-            wordsForSpawn = stats.wordsAmount;
             spawnTimeLetter = letterSpawnDelim / stats.speed;
-            wordsLength = stats.wordsLength;
+            enemyStats = stats;
             finishSpawning = false;
         }
 
@@ -131,6 +133,14 @@ namespace _ROOT.Scripts.Fight
                 && spawnedUnits.First().isActive)
             {
                 spawnedUnits.First().Die();
+            }
+        }
+
+        private void MakeAllAvailable()
+        {
+            foreach (var unit in spawnedUnits)
+            {
+                unit.MakeAvailable();
             }
         }
     }

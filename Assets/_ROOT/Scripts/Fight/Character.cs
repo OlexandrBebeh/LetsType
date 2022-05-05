@@ -9,21 +9,18 @@ namespace _ROOT.Scripts.Fight
     public class Character : MonoBehaviour
     {
         
-        [SerializeField] public int MaxHearts = 5;
+        [SerializeField] public int MaxHearts;
         
         [SerializeField] public int hearts;
-
-        [SerializeField] public int charsToRestoreHeart = 10;
-        private void Start()
-        {
-            hearts = MaxHearts;
-        }
-
         private void OnTriggerEnter2D(Collider2D other)
         {
             TryToDestroy(other);
         }
 
+        public void Init()
+        {
+            hearts = MaxHearts = PlayerProvider.Instance.Player.Hearts;
+        }
         private void TakeAHit()
         {
             hearts--;
@@ -41,6 +38,16 @@ namespace _ROOT.Scripts.Fight
             {
                 unit.Die();
                 TakeAHit();
+            }
+        }
+        
+        public void Heal(int heal)
+        {
+            hearts += heal;
+
+            if (hearts > MaxHearts)
+            {
+                hearts = MaxHearts;
             }
         }
     }
