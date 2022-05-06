@@ -22,5 +22,6 @@ namespace _ROOT.Scripts.Settings
         public float speed;
 
         public float deltaSpeed;
+
     }
 }
