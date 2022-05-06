@@ -68,7 +68,7 @@ namespace _ROOT.Scripts.Fight
                     break;
                 }
 
-                spawnTimeWord = spawnTimeLetter * word.Length + 1;
+                spawnTimeWord = spawnTimeLetter * word.Length;
                 yield return new WaitForSeconds(spawnTimeWord);
             }
         }
@@ -93,10 +93,10 @@ namespace _ROOT.Scripts.Fight
         private Vector3 GetRandomPosition()
         {
             var size = camera.orthographicSize;
-            var randomDirection = Random.onUnitSphere;
-            randomDirection.z = 0;
+            var randomDirection = Vector3.zero;
+            randomDirection.y += size * Random.Range(0f, 1f);
+            randomDirection.x += size * Random.Range(-1f, 1f);
             randomDirection *= 1.1f;
-            randomDirection.y += size;
             randomDirection += character.transform.position;
             return randomDirection;
         }
@@ -130,7 +130,8 @@ namespace _ROOT.Scripts.Fight
         {
             if (spawnedUnits.Count != 0 
                 && inputChar == spawnedUnits.First().TargetChar 
-                && spawnedUnits.First().isActive)
+                && spawnedUnits.First().isActive
+                && Time.timeScale != 0f)
             {
                 spawnedUnits.First().Die();
             }

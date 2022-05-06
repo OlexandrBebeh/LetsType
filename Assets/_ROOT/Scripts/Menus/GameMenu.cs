@@ -1,0 +1,61 @@
+﻿using System;
+using _ROOT.Scripts.Game;
+using Unity.VisualScripting;
+using UnityEditor;
+using UnityEngine;
+
+namespace _ROOT.Scripts.Menus
+{
+    public class GameMenu : MonoBehaviour
+    {
+        [SerializeField] public GameObject menu;
+        
+        private bool isStoped;
+
+        private void Awake()
+        {
+            isStoped = false;
+            menu.SetActive(false);
+        }
+
+        private void FixedUpdate()
+        {
+            if (Input.GetKey(KeyCode.Escape))
+            {
+                if (isStoped)
+                {
+                    Resume();
+                }
+                else
+                {
+                    Pause();
+                }
+            }
+        }
+
+        public void Resume()
+        {
+            menu.SetActive(false);
+            Time.timeScale = 1f;
+            isStoped = false;        }
+
+        private void Pause()
+        {
+            menu.SetActive(true);
+            Time.timeScale = 0f;
+            isStoped = true;
+        }
+
+        public void ExitToMenu()
+        {
+            Time.timeScale = 1f;
+            GameController.Instance.Exit();
+        }
+        
+        public void Exit()
+        {
+            Time.timeScale = 1f;
+            Application.Quit();
+        }
+    }
+}
