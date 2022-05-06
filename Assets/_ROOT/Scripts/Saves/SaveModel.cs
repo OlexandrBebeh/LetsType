@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
+using _ROOT.Scripts.Saves.Level;
 using _ROOT.Scripts.Saves.Player;
 
 namespace _ROOT.Scripts.Saves
@@ -11,11 +11,6 @@ namespace _ROOT.Scripts.Saves
         public PlayerSave PlayerSave;
         
         public LevelSave LevelSave;
-    }
-
-    public class LevelSave : SaveComponent
-    {
-        public int current_level;
     }
 
     public class Header

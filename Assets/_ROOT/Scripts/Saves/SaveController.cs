@@ -1,5 +1,6 @@
 ﻿using System;
 using _ROOT.Scripts.Saves.Player;
+using _ROOT.Scripts.Saves.Level;
 
 namespace _ROOT.Scripts.Saves
 {
@@ -19,6 +20,7 @@ namespace _ROOT.Scripts.Saves
         {
             var saveModel = saveWorker.Load();
             PlayerSavable.Instance.Deserialize(saveModel.PlayerSave);
+            LevelSavable.Instance.Deserialize(saveModel.LevelSave);
         }
 
         public void SaveState()
@@ -28,12 +30,13 @@ namespace _ROOT.Scripts.Saves
             saveModel.header.time = DateTime.Now;
             saveModel.header.version = 1;
             saveModel.PlayerSave = PlayerSavable.Instance.Serialize();
+            saveModel.LevelSave = LevelSavable.Instance.Serialize();
             saveWorker.Save(saveModel);
         }
         
-        public void PrepareSave()
+        public void PrepareSave(bool delete = false)
         {
-            if (saveWorker.Prepare())
+            if (saveWorker.Prepare() || delete)
             {
                 var saveModel = new SaveModel();
                 saveModel.header = new Header();
@@ -41,6 +44,8 @@ namespace _ROOT.Scripts.Saves
                 saveModel.header.version = 1;
                 
                 saveModel.PlayerSave = PlayerSavable.Instance.PrepareInitial();
+
+                saveModel.LevelSave = LevelSavable.Instance.PrepareInitial();
                 saveWorker.Save(saveModel);
             }
         }

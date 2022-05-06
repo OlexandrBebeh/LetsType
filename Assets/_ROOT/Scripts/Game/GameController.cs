@@ -2,6 +2,7 @@
 using _ROOT.Scripts.GlobalWorld;
 using _ROOT.Scripts.GlobalWorld.Enemies;
 using _ROOT.Scripts.Saves;
+using _ROOT.Scripts.Saves.Level;
 using _ROOT.Scripts.Tools;
 using UnityEngine;
 
@@ -17,26 +18,11 @@ namespace _ROOT.Scripts.Game
         
         private GameState state;
         
-        private int currentLevel;
-
         public GameState GetState()
         {
             return state;
         }
-        public void StartGame()
-        {
-            sceneController.UnloadMenu();
-            sceneController.SwitchToFightScene();
-            state = GameState.fight;
-        }
-        
-        public void StartFight()
-        {
-            sceneController.SwitchToFightScene();
-            cameraController.DisableWorldCamera();
-            state = GameState.fight;
-        }
-        
+
         public void StartFight(Enemy enemy)
         {
             sceneController.SwitchToFightScene();
@@ -45,19 +31,18 @@ namespace _ROOT.Scripts.Game
             state = GameState.fight;
         }
         
-        public void StartGame(int level)
+        public void StartGame()
         {
             sceneController.UnloadMenu();
-            sceneController.SwitchToLevelScene(level);
+            sceneController.SwitchToLevelScene(LevelSavable.Instance.current_level);
             state = GameState.level;
-            currentLevel = level;
         }
         
         public void StartNextLevel()
         {
-            sceneController.UnloadLevelScene(currentLevel);
-            currentLevel++;
-            sceneController.SwitchToLevelScene(currentLevel);
+            sceneController.UnloadLevelScene(LevelSavable.Instance.current_level);
+            LevelSavable.Instance.current_level++;
+            sceneController.SwitchToLevelScene(LevelSavable.Instance.current_level);
             SaveController.Instance.SaveState();
 
         }
@@ -73,7 +58,7 @@ namespace _ROOT.Scripts.Game
 
                    break;
                case GameState.level:
-                   sceneController.UnloadLevelScene(currentLevel);
+                   sceneController.UnloadLevelScene(LevelSavable.Instance.current_level);
                    sceneController.LoadMenu();
                    state = GameState.menu;
 
