@@ -20,7 +20,7 @@ namespace _ROOT.Scripts.Menus
 
         private void FixedUpdate()
         {
-            if (Input.GetKey(KeyCode.Escape))
+            if (Input.GetKey(KeyCode.Escape) && GameController.Instance.GetState() != GameState.menu)
             {
                 if (isStoped)
                 {
