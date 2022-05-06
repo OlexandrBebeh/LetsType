@@ -13,6 +13,8 @@ namespace _ROOT.Scripts.Fight
         public bool IsRestoreUnit;
         
         public bool MakeAllAvailable;
+
+        public string word;
         public event Action<Unit> OnDeath;
 
 

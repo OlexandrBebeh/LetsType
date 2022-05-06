@@ -40,7 +40,7 @@ namespace _ROOT.Scripts.Fight
 
         private bool finishSpawning;
 
-        private List<Unit> spawnedUnits;
+        private Dictionary<string, List<Unit>> spawnedUnits;
 
         private IEnumerator SpawnRoutine()
         {
@@ -50,6 +50,7 @@ namespace _ROOT.Scripts.Fight
             while (true)
             {
                 var word = GetWord();
+                spawnedUnits.Add(word, new List<Unit>());
                 wordsLeft--;
                 var position = GetRandomPosition();
 
@@ -58,7 +59,7 @@ namespace _ROOT.Scripts.Fight
                     yield return waitLetter;
                     var unit = Instantiate(unitPrefab, position, Quaternion.identity, transform);
                     unit.Init(c, character.transform.position, enemyStats.speed);
-                    spawnedUnits.Add(unit);
+                    spawnedUnits[unit.word = word].Add(unit);
                     unit.OnDeath += OnUnitDeath;
                 }
 
@@ -68,7 +69,7 @@ namespace _ROOT.Scripts.Fight
                     break;
                 }
 
-                spawnTimeWord = spawnTimeLetter * word.Length;
+                spawnTimeWord = 0;
                 yield return new WaitForSeconds(spawnTimeWord);
             }
         }
@@ -76,8 +77,11 @@ namespace _ROOT.Scripts.Fight
         private void OnUnitDeath(Unit unit)
         {
             unit.OnDeath -= OnUnitDeath;
-            spawnedUnits.Remove(unit);
-            
+            spawnedUnits[unit.word].Remove(unit);
+            if (spawnedUnits[unit.word].Count == 0)
+            {
+                spawnedUnits.Remove(unit.word);
+            }
             if (IsFinishSpawning())
             {
                 inputProvider.OnInput -= OnInput;
@@ -94,9 +98,8 @@ namespace _ROOT.Scripts.Fight
         {
             var size = camera.orthographicSize;
             var randomDirection = Vector3.zero;
-            randomDirection.y += size * Random.Range(0f, 1f);
+            randomDirection.y += size * Random.Range(0.7f, 1f);
             randomDirection.x += size * Random.Range(-1f, 1f);
-            randomDirection *= 1.1f;
             randomDirection += character.transform.position;
             return randomDirection;
         }
@@ -113,7 +116,7 @@ namespace _ROOT.Scripts.Fight
 
         public void Init(EnemyStats stats)
         {
-            spawnedUnits = new List<Unit>();
+            spawnedUnits = new Dictionary<string, List<Unit>>();
             camera = Camera.main;
             wordsGenerator = new WordsGenerator();
             spawnTimeLetter = letterSpawnDelim / stats.speed;
@@ -128,21 +131,26 @@ namespace _ROOT.Scripts.Fight
         
         private void OnInput(char inputChar)
         {
-            if (spawnedUnits.Count != 0 
-                && inputChar == spawnedUnits.First().TargetChar 
-                && spawnedUnits.First().isActive
+            if (spawnedUnits.Count != 0
                 && Time.timeScale != 0f)
             {
-                spawnedUnits.First().Die();
+                foreach (var lst in spawnedUnits)
+                {
+                    if (lst.Value.First().isActive && lst.Value.First().TargetChar == inputChar)
+                    {
+                        spawnedUnits[lst.Key].First().Die();
+                        break;
+                    }
+                }
             }
         }
 
         private void MakeAllAvailable()
         {
-            foreach (var unit in spawnedUnits)
+            /*foreach (var unit in spawnedUnits)
             {
                 unit.MakeAvailable();
-            }
+            }*/
         }
     }
 }
