@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
 using _ROOT.Scripts.GlobalWorld;
 using _ROOT.Scripts.GlobalWorld.Enemies;
+using _ROOT.Scripts.Saves;
 using _ROOT.Scripts.Tools;
 using UnityEngine;
 
@@ -18,6 +19,10 @@ namespace _ROOT.Scripts.Game
         
         private int currentLevel;
 
+        public GameState GetState()
+        {
+            return state;
+        }
         public void StartGame()
         {
             sceneController.UnloadMenu();
@@ -36,7 +41,7 @@ namespace _ROOT.Scripts.Game
         {
             sceneController.SwitchToFightScene();
             cameraController.DisableWorldCamera();
-            FightController.Instance.SetEnemy(enemy);
+            FightController.Instance.PrepareFight(enemy);
             state = GameState.fight;
         }
         
@@ -53,6 +58,8 @@ namespace _ROOT.Scripts.Game
             sceneController.UnloadLevelScene(currentLevel);
             currentLevel++;
             sceneController.SwitchToLevelScene(currentLevel);
+            SaveController.Instance.SaveState();
+
         }
         
         public void Exit()

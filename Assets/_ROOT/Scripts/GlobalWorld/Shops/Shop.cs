@@ -17,9 +17,14 @@ namespace _ROOT.Scripts.GlobalWorld.Shops
         [SerializeField] private TMP_Text HeartLabel;
 
         [SerializeField] private TMP_Text RangeLablePanel;
+        
+        [SerializeField] private TMP_Text ItemsLeft;
+
+        [SerializeField] public int BuyLimit;
         private void Awake()
         {
             OtherGameObject.SetActive(false);
+            ItemsLeft.SetText("Items left:" + BuyLimit);
         }
 
         private void Update()
@@ -49,19 +54,23 @@ namespace _ROOT.Scripts.GlobalWorld.Shops
 
         public void BuyHeart()
         {
-            if (PlayerSavable.Instance.Gold > CalculatePrice(PlayerSavable.Instance.Hearts))
+            if (BuyLimit > 0 && PlayerSavable.Instance.Gold >= CalculatePrice(PlayerSavable.Instance.Hearts))
             {
                 PlayerSavable.Instance.Gold -= CalculatePrice(PlayerSavable.Instance.Hearts);
                 PlayerSavable.Instance.Hearts++;
+                BuyLimit--;
+                ItemsLeft.SetText("Items left:" + BuyLimit);
             }
         }
         
         public void BuyRange()
         {
-            if (PlayerSavable.Instance.Gold > CalculatePrice(PlayerSavable.Instance.Range - rangeDelim))
+            if (BuyLimit > 0 && PlayerSavable.Instance.Gold >= CalculatePrice(PlayerSavable.Instance.Range - rangeDelim))
             {
                 PlayerSavable.Instance.Gold -= CalculatePrice(PlayerSavable.Instance.Range - rangeDelim);
                 PlayerSavable.Instance.Range++;
+                BuyLimit--;
+                ItemsLeft.SetText("Items left:" + BuyLimit);
             }
         }
 

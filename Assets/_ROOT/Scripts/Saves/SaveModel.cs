@@ -15,6 +15,7 @@ namespace _ROOT.Scripts.Saves
 
     public class LevelSave : SaveComponent
     {
+        public int current_level;
     }
 
     public class Header

@@ -10,8 +10,8 @@ namespace _ROOT.Scripts.GlobalWorld
     public class FightController : Singleton<FightController>
     {
         private Enemy enemy;
-
-        public void SetEnemy(Enemy enemy)
+        
+        public void PrepareFight(Enemy enemy)
         {
             this.enemy = enemy;
             GameEvents.OnFightEnd += FightResult;
