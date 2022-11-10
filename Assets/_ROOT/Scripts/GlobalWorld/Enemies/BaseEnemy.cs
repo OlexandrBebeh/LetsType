@@ -1,6 +1,6 @@
 ﻿namespace _ROOT.Scripts.GlobalWorld.Enemies
 {
-    public class TreeEnemy : Enemy
+    public class BaseEnemy : Enemy
     {
         
     }

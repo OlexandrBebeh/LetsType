@@ -20,7 +20,7 @@ namespace _ROOT.Scripts.Fight
         {
             hearts = MaxHearts = PlayerSavable.Instance.Hearts;
         }
-        private void TakeAHit()
+        public void TakeAHit()
         {
             hearts--;
             if (hearts == 0)
@@ -40,7 +40,7 @@ namespace _ROOT.Scripts.Fight
             }
         }
         
-        public void Heal(int heal)
+        public void Heal(int heal = 1)
         {
             hearts += heal;
 

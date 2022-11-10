@@ -23,6 +23,11 @@ namespace _ROOT.Scripts.Game
             return state;
         }
 
+        public void LoadMenu()
+        {
+            sceneController.LoadMenu();
+            state = GameState.menu;
+        }
         public void StartFight(Enemy enemy)
         {
             sceneController.SwitchToFightScene();

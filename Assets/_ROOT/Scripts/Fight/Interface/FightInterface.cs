@@ -9,6 +9,8 @@ namespace _ROOT.Scripts.Fight.Interface
 
         [SerializeField] private TMP_Text WordsLeftPanel;
 
+        [SerializeField] private TMP_Text CharactersLeftPanel;
+        
         [SerializeField] private Character character;
         
         [SerializeField] private UnitSpawner unitSpawner;
@@ -18,14 +20,15 @@ namespace _ROOT.Scripts.Fight.Interface
         {
             WordsLeftFraze = "Words left: ";
             HeartLabel.SetText(character.hearts.ToString());
-            WordsLeftPanel.SetText(WordsLeftFraze + unitSpawner.GetWordsLeft().ToString());
+            WordsLeftPanel.SetText(WordsLeftFraze + unitSpawner.GetWordsLeft());
+            CharactersLeftPanel.SetText(unitSpawner.GetCharactersLeft().ToString());
         }
 
         private void FixedUpdate()
         {
             HeartLabel.SetText(character.hearts.ToString());
-            WordsLeftPanel.SetText(WordsLeftFraze + unitSpawner.GetWordsLeft().ToString());
-
+            WordsLeftPanel.SetText(WordsLeftFraze + unitSpawner.GetWordsLeft());
+            CharactersLeftPanel.SetText(unitSpawner.GetCharactersLeft().ToString());
         }
         
     }

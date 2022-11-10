@@ -18,7 +18,7 @@ namespace _ROOT.Scripts.GlobalWorld
         {
             plateGameObject.SetActive(false);
         }
-
+        
         private void FixedUpdate()
         {
             PriceLabel.SetText(Price.ToString());

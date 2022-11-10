@@ -21,7 +21,7 @@ namespace _ROOT.Scripts.Dictionary
                 {
                     dictionary.Add(line.Length, new List<string>());
                 }
-                dictionary[line.Length].Add(line);
+                dictionary[line.Length].Add(line.ToLower());
             }
         }
 

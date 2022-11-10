@@ -23,5 +23,11 @@ namespace _ROOT.Scripts.Settings
 
         public float deltaSpeed;
 
+        public float restoreChance = 0;
+        
+        public float allAvailableChance = 0;
+        
+        public int mistakeFactor = 2;
+        
     }
 }

@@ -10,14 +10,15 @@ namespace _ROOT.Scripts.Fight
 
         [SerializeField] public float speed;
 
+        [SerializeField] public SpriteRenderer sprite;
+
         public bool IsRestoreUnit;
         
-        public bool MakeAllAvailable;
+        public bool makeAllAvailable;
 
         public string word;
         public event Action<Unit> OnDeath;
-
-
+        
         public char TargetChar { get; private set; }
 
         private Vector3 Target;
@@ -28,7 +29,7 @@ namespace _ROOT.Scripts.Fight
         {
             TargetChar = targetChar;
             label.SetText(targetChar.ToString());
-            label.faceColor = Color.red;
+            label.faceColor = Color.black;
             Target = target;
             isActive = false;
             speed = _speed;
@@ -37,9 +38,20 @@ namespace _ROOT.Scripts.Fight
         public void MakeAvailable()
         {
             isActive = true;
-            label.faceColor = Color.blue;
+            label.faceColor = Color.green;
         }
-
+        
+        public void MakeAllAvailable()
+        {
+            makeAllAvailable = true;
+            sprite.color = Color.yellow;
+        }
+        
+        public void MakeRestore()
+        {
+            IsRestoreUnit = true;
+            sprite.color = Color.red;
+        }
 
         private void OnInput(char inputChar)
         {

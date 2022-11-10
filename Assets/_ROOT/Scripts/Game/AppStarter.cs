@@ -5,12 +5,10 @@ namespace _ROOT.Scripts.Game
 {
     public class AppStarter : MonoBehaviour
     {
-        [SerializeField] private SceneController sceneController;
-
         private void Awake()
         {
             PrepareSaves();
-            sceneController.LoadMenu();
+            GameController.Instance.LoadMenu();
         }
 
         private void PrepareSaves()

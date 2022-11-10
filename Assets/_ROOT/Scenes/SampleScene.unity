@@ -253,10 +253,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnTimeLetter: 1
   spawnTimeWord: 5
-  wordsForSpawn: 0
+  letterSpawnDelim: 0
+  restoreUnit: 0
+  availableUnit: 0
   unitPrefab: {fileID: 3105109620980301939, guid: 809feaa994f965341881abd9a8880dcc, type: 3}
-  camera: {fileID: 963194227}
   inputProvider: {fileID: 988495725}
+  character: {fileID: 0}
 --- !u!1 &139034267
 GameObject:
   m_ObjectHideFlags: 0
@@ -304,9 +306,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d410cffd43540cab7bf74df157d17a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Hearts: 1
-  Gold: 0
   Speed: 8
+  ShiftSpeed: 0
+  CanMove: 0
 --- !u!58 &139034270
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -671,8 +673,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a918642bd0f4ad2b46a965a409b8626, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  label: {fileID: 938218381}
+  HeartLabel: {fileID: 0}
+  WordsLeftPanel: {fileID: 0}
   character: {fileID: 1314332057}
+  unitSpawner: {fileID: 0}
 --- !u!1 &582860625
 GameObject:
   m_ObjectHideFlags: 0
@@ -2093,7 +2097,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MaxHearts: 5
   hearts: 2
-  charsToRestoreHeart: 10
 --- !u!58 &1314332058
 CircleCollider2D:
   m_ObjectHideFlags: 0

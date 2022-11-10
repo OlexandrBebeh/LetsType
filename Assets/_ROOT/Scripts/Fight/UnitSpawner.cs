@@ -4,11 +4,8 @@ using System.Linq;
 using _ROOT.Scripts.Dictionary;
 using _ROOT.Scripts.Game;
 using _ROOT.Scripts.GlobalWorld;
-using _ROOT.Scripts.GlobalWorld.Enemies;
 using _ROOT.Scripts.Settings;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace _ROOT.Scripts.Fight
 {
@@ -30,6 +27,8 @@ namespace _ROOT.Scripts.Fight
 
         [SerializeField] public Character character;
 
+        private UnitModificator modificator;
+
         private EnemyStats enemyStats;
         
         private WordsGenerator wordsGenerator;
@@ -42,6 +41,8 @@ namespace _ROOT.Scripts.Fight
 
         private Dictionary<string, List<Unit>> spawnedUnits;
 
+        private int charactersLeft;
+        
         private IEnumerator SpawnRoutine()
         {
             var waitLetter = new WaitForSeconds(spawnTimeLetter);
@@ -59,6 +60,7 @@ namespace _ROOT.Scripts.Fight
                     yield return waitLetter;
                     var unit = Instantiate(unitPrefab, position, Quaternion.identity, transform);
                     unit.Init(c, character.transform.position, enemyStats.speed);
+                    modificator.ModifyUnit(unit);
                     spawnedUnits[unit.word = word].Add(unit);
                     unit.OnDeath += OnUnitDeath;
                 }
@@ -69,7 +71,7 @@ namespace _ROOT.Scripts.Fight
                     break;
                 }
 
-                spawnTimeWord = 0;
+                spawnTimeWord = word.Length * spawnTimeLetter;
                 yield return new WaitForSeconds(spawnTimeWord);
             }
         }
@@ -78,6 +80,15 @@ namespace _ROOT.Scripts.Fight
         {
             unit.OnDeath -= OnUnitDeath;
             spawnedUnits[unit.word].Remove(unit);
+            if (unit.makeAllAvailable)
+            {
+                MakeAllAvailable();
+            }
+
+            if (unit.IsRestoreUnit)
+            {
+                character.Heal();
+            }
             if (spawnedUnits[unit.word].Count == 0)
             {
                 spawnedUnits.Remove(unit.word);
@@ -116,12 +127,15 @@ namespace _ROOT.Scripts.Fight
 
         public void Init(EnemyStats stats)
         {
+            modificator = new ();
             spawnedUnits = new Dictionary<string, List<Unit>>();
             camera = Camera.main;
             wordsGenerator = new WordsGenerator();
             spawnTimeLetter = letterSpawnDelim / stats.speed;
             enemyStats = stats;
             finishSpawning = false;
+            modificator.Init(stats);
+            charactersLeft = stats.wordsAmount * stats.wordsLength.Max() / stats.mistakeFactor;
         }
 
         public void StartSpawn()
@@ -134,12 +148,26 @@ namespace _ROOT.Scripts.Fight
             if (spawnedUnits.Count != 0
                 && Time.timeScale != 0f)
             {
+                bool used = true;
                 foreach (var lst in spawnedUnits)
                 {
-                    if (lst.Value.First().isActive && lst.Value.First().TargetChar == inputChar)
+                    if (lst.Value.Count != 0 && lst.Value.First().isActive && lst.Value.First().TargetChar == inputChar)
                     {
                         spawnedUnits[lst.Key].First().Die();
+                        used = false;
                         break;
+                    }
+                }
+
+                if (used)
+                {
+                    if (charactersLeft == 0)
+                    {
+                        character.TakeAHit();
+                    }
+                    else
+                    {
+                        charactersLeft--;
                     }
                 }
             }
@@ -147,10 +175,21 @@ namespace _ROOT.Scripts.Fight
 
         private void MakeAllAvailable()
         {
-            /*foreach (var unit in spawnedUnits)
+            foreach (var lst in spawnedUnits)
             {
-                unit.MakeAvailable();
-            }*/
+                if (lst.Value.Count != 0)
+                {
+                    foreach (var unit in lst.Value)
+                    {
+                        unit.MakeAvailable();
+                    }
+                }
+            }
+        }
+
+        public int GetCharactersLeft()
+        {
+            return charactersLeft;
         }
     }
 }

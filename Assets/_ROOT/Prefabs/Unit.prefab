@@ -50,7 +50,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   label: {fileID: 3105109621215824818}
-  inputProvider: {fileID: 6282274328768685129, guid: e1f4f84a8c22c404c9d4f693b71b0703, type: 3}
+  speed: 0
+  sprite: {fileID: 3105109621474428424}
+  IsRestoreUnit: 0
+  makeAllAvailable: 0
+  word: 
+  isActive: 0
 --- !u!114 &3750202885515541475
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -63,9 +68,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 400dfb6243b84874aa7e84d4e2437fd5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 8
   unit: {fileID: 3105109620980301939}
-  character: {fileID: 0}
 --- !u!50 &-35167780777036452
 Rigidbody2D:
   serializedVersion: 4
@@ -178,8 +181,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4280624639
-  m_fontColor: {r: 1, g: 0.14528298, b: 0.14528298, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:

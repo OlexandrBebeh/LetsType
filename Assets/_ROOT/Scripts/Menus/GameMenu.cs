@@ -37,7 +37,8 @@ namespace _ROOT.Scripts.Menus
         {
             menu.SetActive(false);
             Time.timeScale = 1f;
-            isStoped = false;        }
+            isStoped = false;        
+        }
 
         private void Pause()
         {
@@ -50,6 +51,7 @@ namespace _ROOT.Scripts.Menus
         {
             Time.timeScale = 1f;
             GameController.Instance.Exit();
+            Resume();
         }
         
         public void Exit()
