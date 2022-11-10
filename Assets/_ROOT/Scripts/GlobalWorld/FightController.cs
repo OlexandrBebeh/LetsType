@@ -29,7 +29,7 @@ namespace _ROOT.Scripts.GlobalWorld
                 PlayerSavable.Instance.Gold += enemy.Reward;
                 Destroy(enemy.gameObject);
             }
-            PlayerProvider.Instance.Player.FightEnd();
+            PlayerProvider.Instance.Player.EnableMove();
             
             GameEvents.OnFightEnd -= FightResult;
             GameController.Instance.ExitFight();

@@ -58,7 +58,7 @@ namespace _ROOT.Scripts.GlobalWorld
             var enemy = other.gameObject.GetComponentInParent<Enemy>();
             if (CheckForFight(enemy))
             {
-                PreparePlayerForFight();
+                DisableMove();
                 GameController.Instance.StartFight(enemy);
             }
         }
@@ -68,12 +68,12 @@ namespace _ROOT.Scripts.GlobalWorld
             return enemy;
         }
 
-        private void PreparePlayerForFight()
+        public void DisableMove()
         {
             CanMove = false;
         }
 
-        public void FightEnd()
+        public void EnableMove()
         {
             CanMove = true;
         }
@@ -82,6 +82,11 @@ namespace _ROOT.Scripts.GlobalWorld
         public void AddGold()
         {
             PlayerSavable.Instance.Gold += 100;
+        }
+
+        public void SubscribeForMove(bool b)
+        {
+            CanMove = b;
         }
     }
 }
