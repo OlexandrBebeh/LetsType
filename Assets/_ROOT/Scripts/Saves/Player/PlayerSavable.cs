@@ -14,7 +14,7 @@ namespace _ROOT.Scripts.Saves.Player
 
         public virtual PlayerSave PrepareInitial()
         {
-            var player = Resources.Load<PlayerDefautSettings>($"Settings/{nameof(PlayerDefautSettings)}").stats;
+            var player = Resources.Load<PlayerDefaultSettings>($"Settings/{nameof(PlayerDefaultSettings)}").stats;
             return new PlayerSave()
             {
                 Gold = player.Gold,

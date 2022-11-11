@@ -1,0 +1,71 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47f68dd254694dfe877bc15d14df022f, type: 3}
+  m_Name: EnemySettings
+  m_EditorClassIdentifier: 
+  stats:
+  - id: tree
+    wordsAmount: 3
+    wordsLength: 04000000
+    speed: 3
+    deltaSpeed: 0
+    restoreChance: 0
+    allAvailableChance: 0
+    mistakeFactor: 2
+  - id: danger
+    wordsAmount: 10
+    wordsLength: 030000000400000005000000
+    speed: 10
+    deltaSpeed: 1
+    restoreChance: 0
+    allAvailableChance: 0
+    mistakeFactor: 2
+  - id: bee
+    wordsAmount: 5
+    wordsLength: 0300000004000000
+    speed: 6
+    deltaSpeed: 1
+    restoreChance: 0
+    allAvailableChance: 0
+    mistakeFactor: 2
+  - id: Boss
+    wordsAmount: 10
+    wordsLength: 0300000006000000
+    speed: 6
+    deltaSpeed: 1
+    restoreChance: 0
+    allAvailableChance: 0
+    mistakeFactor: 2
+  - id: slug
+    wordsAmount: 4
+    wordsLength: 0400000005000000
+    speed: 5
+    deltaSpeed: 0
+    restoreChance: 0
+    allAvailableChance: 0
+    mistakeFactor: 2
+  - id: mimik
+    wordsAmount: 3
+    wordsLength: 0200000003000000
+    speed: 4
+    deltaSpeed: 0
+    restoreChance: 0.5
+    allAvailableChance: 0.5
+    mistakeFactor: 2
+  - id: level3
+    wordsAmount: 5
+    wordsLength: 0400000005000000
+    speed: 5
+    deltaSpeed: 0
+    restoreChance: 0.1
+    allAvailableChance: 0.1
+    mistakeFactor: 2
