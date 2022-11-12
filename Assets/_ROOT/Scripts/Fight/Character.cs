@@ -35,7 +35,7 @@ namespace _ROOT.Scripts.Fight
             var unit = other.GetComponentInParent<Unit>();
             if (unit is not null)
             {
-                unit.Die();
+                unit.Destroy();
                 TakeAHit();
             }
         }

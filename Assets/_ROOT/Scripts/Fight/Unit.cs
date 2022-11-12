@@ -67,6 +67,10 @@ namespace _ROOT.Scripts.Fight
             Destroy(gameObject);
         }
 
+        public void Destroy()
+        {
+            Destroy(gameObject);
+        }
         public Vector3 GetTarget()
         {
             return Target;

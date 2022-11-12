@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using _ROOT.Scripts.Dictionary;
@@ -6,6 +7,7 @@ using _ROOT.Scripts.Game;
 using _ROOT.Scripts.GlobalWorld;
 using _ROOT.Scripts.Settings;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 namespace _ROOT.Scripts.Fight
 {
@@ -190,6 +192,14 @@ namespace _ROOT.Scripts.Fight
         public int GetCharactersLeft()
         {
             return charactersLeft;
+        }
+
+        private void OnDestroy()
+        {
+            if (!IsFinishSpawning())
+            {
+                GameEvents.StartFightEndEvent(FightResults.Lose);
+            }
         }
     }
 }
