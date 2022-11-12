@@ -9,7 +9,7 @@ namespace _ROOT.Scripts.GlobalWorld
         [SerializeField] GameObject GlobalInterface;
         private void FixedUpdate()
         {
-            if (GameController.Instance.GetState() == GameState.fight)
+            if (NeedHideInterface())
             {
                 GlobalInterface.SetActive(false);
             }
@@ -17,6 +17,12 @@ namespace _ROOT.Scripts.GlobalWorld
             {
                 GlobalInterface.SetActive(true);
             }
+        }
+
+        private bool NeedHideInterface()
+        {
+            return GameController.Instance.GetState() == GameState.fight
+                   || GameController.Instance.GetState() == GameState.dialog;
         }
     }
 }

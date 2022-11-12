@@ -82,5 +82,17 @@ namespace _ROOT.Scripts.Game
             cameraController.EnableWorldCamera();
             state = GameState.level;
         }
+
+        public void IsDialog(bool inDialog = false)
+        {
+            if (inDialog)
+            {
+                state = GameState.dialog;
+            }
+            else
+            {
+                state = GameState.level;
+            }
+        }
     }
 }

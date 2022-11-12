@@ -5,6 +5,7 @@
         load = 0,
         menu,
         level,
-        fight
+        fight,
+        dialog
     }
 }
