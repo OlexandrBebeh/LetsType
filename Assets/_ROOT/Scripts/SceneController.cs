@@ -12,6 +12,10 @@ namespace _ROOT.Scripts
 
         [SerializeField] private string levelScene;
 
+        [SerializeField] private int lastSceneWithoutAutoGenerate;
+
+        [SerializeField] private string levelGenerateScene;
+
         private int currentLevel;
         public void LoadMenu()
         {
@@ -44,6 +48,10 @@ namespace _ROOT.Scripts
             {
                 str = levelScene + level;
             }
+            if (lastSceneWithoutAutoGenerate <= level)
+            {
+                str = levelGenerateScene;
+            }
             LoadScene(str);
             currentLevel = level;
         }
@@ -58,6 +66,11 @@ namespace _ROOT.Scripts
             else
             {
                 str = levelScene + level;
+            }
+
+            if (lastSceneWithoutAutoGenerate <= level)
+            {
+                str = levelGenerateScene;
             }
             UnloadScene(str);
         }

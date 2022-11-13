@@ -8,6 +8,8 @@ namespace _ROOT.Scripts.GlobalWorld.Enemies
     {
         [SerializeField] public string Name;
         
+        [SerializeField] public int level = 1;
+
         [SerializeField] public int Reward;
 
         public virtual void DestroySelf()

@@ -32,4 +32,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_ROOT/Scenes/Level_05.unity
     guid: 30458e781c461dd418ca8a8fd3059312
+  - enabled: 1
+    path: Assets/_ROOT/Scenes/ForeverLevel.unity
+    guid: 3d40955718fef37449195538e54bbbba
   m_configObjects: {}

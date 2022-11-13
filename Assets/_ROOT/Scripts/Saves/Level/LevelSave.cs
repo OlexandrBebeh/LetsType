@@ -3,5 +3,8 @@
     public class LevelSave : SaveComponent
     {
         public int current_level;
+        
+        public int level_seed;
+
     }
 }

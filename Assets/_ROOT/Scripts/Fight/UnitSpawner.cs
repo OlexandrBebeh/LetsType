@@ -44,7 +44,11 @@ namespace _ROOT.Scripts.Fight
         private Dictionary<string, List<Unit>> spawnedUnits;
 
         private int charactersLeft;
+
+        private float calculatedSpeed;
         
+        private int calculatedWordsAmount;
+
         private IEnumerator SpawnRoutine()
         {
             var waitLetter = new WaitForSeconds(spawnTimeLetter);
@@ -61,7 +65,7 @@ namespace _ROOT.Scripts.Fight
                 {
                     yield return waitLetter;
                     var unit = Instantiate(unitPrefab, position, Quaternion.identity, transform);
-                    unit.Init(c, character.transform.position, enemyStats.speed);
+                    unit.Init(c, character.transform.position, calculatedSpeed);
                     modificator.ModifyUnit(unit);
                     spawnedUnits[unit.word = word].Add(unit);
                     unit.OnDeath += OnUnitDeath;
@@ -127,7 +131,7 @@ namespace _ROOT.Scripts.Fight
             return finishSpawning && spawnedUnits.Count == 0;
         }
 
-        public void Init(EnemyStats stats)
+        public void Init(EnemyStats stats, int level)
         {
             modificator = new ();
             spawnedUnits = new Dictionary<string, List<Unit>>();
@@ -135,9 +139,11 @@ namespace _ROOT.Scripts.Fight
             wordsGenerator = new WordsGenerator();
             spawnTimeLetter = letterSpawnDelim / stats.speed;
             enemyStats = stats;
+            calculatedSpeed = stats.speed + stats.speedPerLevel * level;
+            calculatedWordsAmount = stats.wordsAmount + stats.wordsAmountPerLevel * level;
             finishSpawning = false;
             modificator.Init(stats);
-            charactersLeft = stats.wordsAmount * stats.wordsLength.Max() / stats.mistakeFactor;
+            charactersLeft = calculatedWordsAmount * stats.wordsLength.Max() / stats.mistakeFactor;
         }
 
         public void StartSpawn()

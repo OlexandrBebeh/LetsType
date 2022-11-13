@@ -1,4 +1,6 @@
-﻿namespace _ROOT.Scripts.Saves.Level
+﻿using System;
+
+namespace _ROOT.Scripts.Saves.Level
 {
     public class LevelSavable : SavableComponent<LevelSave>
     {
@@ -7,11 +9,14 @@
 
         public int current_level { get; set; }
 
+        public int level_seed { get; set; }
+
         public virtual LevelSave PrepareInitial()
         {
             return new LevelSave()
             {
-                current_level = 1
+                current_level = 1,
+                level_seed = new Random().Next()
             };
         }
 
@@ -20,12 +25,14 @@
             return new LevelSave
             {
                 current_level = current_level,
+                level_seed = level_seed,
             };
         }
 
         public override void Deserialize(LevelSave save)
         {
             current_level = save.current_level;
+            level_seed = save.level_seed;
         }
     }
 }

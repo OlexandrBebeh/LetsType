@@ -29,5 +29,9 @@ namespace _ROOT.Scripts.Settings
         
         public int mistakeFactor = 2;
         
+        public float speedPerLevel = 0;
+
+        public int wordsAmountPerLevel = 0;
+
     }
 }

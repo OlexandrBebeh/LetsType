@@ -564,6 +564,8 @@ MonoBehaviour:
   menuScene: Menu
   fightScene: Fighting
   levelScene: Level_
+  lastSceneWithoutAutoGenerate: 1
+  levelGenerateScene: ForeverLevel
 --- !u!114 &417272136
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -591,7 +593,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f0f6dd245584827bc6aea7484994b9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneController: {fileID: 417272135}
 --- !u!114 &417272138
 MonoBehaviour:
   m_ObjectHideFlags: 0

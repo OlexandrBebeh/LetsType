@@ -22,6 +22,10 @@ namespace _ROOT.Scripts.GlobalWorld
             return enemy.Name;
         }
         
+        public int GetEnemyLevel()
+        {
+            return enemy.level;
+        }
         public void FightResult(FightResults res)
         {
             if (res == FightResults.Win)
