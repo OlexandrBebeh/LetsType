@@ -155,7 +155,7 @@ namespace _ROOT.Scripts.Fight
                 {
                     if (lst.Value.Count != 0 && lst.Value.First().isActive && lst.Value.First().TargetChar == inputChar)
                     {
-                        spawnedUnits[lst.Key].First().Die();
+                        lst.Value.First().Die();
                         used = false;
                         break;
                     }

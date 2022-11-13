@@ -8,7 +8,7 @@ namespace _ROOT.Scripts.Fight
     {
         public event Action<char> OnInput;
 
-        private readonly char[] excludeChars = {'\b', '\n'};
+        private readonly char[] excludeChars = {'\b', '\n', ' '};
 
         private void Update()
         {

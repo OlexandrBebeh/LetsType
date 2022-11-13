@@ -9,5 +9,10 @@ namespace _ROOT.Scripts.GlobalWorld.Enemies
         [SerializeField] public string Name;
         
         [SerializeField] public int Reward;
+
+        public virtual void DestroySelf()
+        {
+            Destroy(gameObject); 
+        }
     }
 }

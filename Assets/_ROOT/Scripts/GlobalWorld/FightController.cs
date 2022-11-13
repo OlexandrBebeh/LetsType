@@ -27,7 +27,7 @@ namespace _ROOT.Scripts.GlobalWorld
             if (res == FightResults.Win)
             {
                 PlayerSavable.Instance.Gold += enemy.Reward;
-                Destroy(enemy.gameObject);
+                enemy.DestroySelf();
             }
             PlayerProvider.Instance.Player.EnableMove();
             
