@@ -84,9 +84,9 @@ namespace _ROOT.Scripts.GlobalWorld
             PlayerSavable.Instance.Gold += 100;
         }
 
-        public void SubscribeForMove(bool b)
+        public void SubscribeForMove(bool isDialogEnd)
         {
-            CanMove = b;
+            CanMove = !isDialogEnd;
         }
     }
 }

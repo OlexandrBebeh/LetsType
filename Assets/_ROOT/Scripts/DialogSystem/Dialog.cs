@@ -65,9 +65,15 @@ namespace _ROOT.Scripts.DialogSystem
             }
             else
             {
-                OnDialogEnd?.Invoke(true);
+                PostDialog();
+                OnDialogEnd?.Invoke(false);
                 gameObject.SetActive(false);
             }
+        }
+
+        public virtual void PostDialog()
+        {
+            
         }
     }
 }

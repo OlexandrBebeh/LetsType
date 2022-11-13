@@ -20,6 +20,8 @@ namespace _ROOT.Scripts.DialogSystem
             {
                 player.DisableMove();
                 dialog.OnDialogEnd += player.SubscribeForMove;
+                dialog.OnDialogEnd += GameController.Instance.IsDialog;
+
                 GameController.Instance.IsDialog(true);
                 dialog.StartDialog();
             }
@@ -32,7 +34,13 @@ namespace _ROOT.Scripts.DialogSystem
             {
                 GameController.Instance.IsDialog();
                 dialog.OnDialogEnd -= player.SubscribeForMove;
+                dialog.OnDialogEnd -= GameController.Instance.IsDialog;
             }
+        }
+
+        public void SetDialog(Dialog newDialog)
+        {
+            dialog = newDialog;
         }
     }
 }

@@ -27,14 +27,13 @@ namespace _ROOT.Scripts.GlobalWorld
             if (res == FightResults.Win)
             {
                 PlayerSavable.Instance.Gold += enemy.Reward;
+                GameEvents.SlayedEnemyEvent(enemy);
                 enemy.DestroySelf();
             }
             PlayerProvider.Instance.Player.EnableMove();
             
             GameEvents.OnFightEnd -= FightResult;
             GameController.Instance.ExitFight();
-            SaveController.Instance.SaveState();
-
         }
     }
 }
