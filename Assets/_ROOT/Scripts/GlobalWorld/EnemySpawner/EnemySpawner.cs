@@ -21,6 +21,10 @@ namespace _ROOT.Scripts.GlobalWorld.EnemySpawner
         
         [SerializeField] public Vector3 spawnTo;
 
+        [SerializeField] public GameObject enemyList;
+
+        private const int MAX_ATTEMPTS = 100;
+        
         private void Awake()
         {
             rand = new Random(LevelSavable.Instance.level_seed);
@@ -29,14 +33,30 @@ namespace _ROOT.Scripts.GlobalWorld.EnemySpawner
         public void SpawnEnemies()
         {
             var enemyToSpawn = enemyCount + rand.Next(0, deltaEnemyCount);
-
+            int attempts = 0;
             while (enemyToSpawn > 0)
             {
+                attempts++;
+                if (attempts >= MAX_ATTEMPTS)
+                {
+                    break;
+                }
+                
                 var position = GetRandomVector3();
                 
                 var unit = Instantiate(unitsForSpawn[rand.Next(0,unitsForSpawn.Count)], position, Quaternion.identity, transform);
                 
-                enemyToSpawn--;
+                bool noCollisions = CheckForCollision(unit);
+
+                if (noCollisions)
+                {
+                    Destroy(unit.gameObject);
+                }
+                else
+                {
+                    enemyToSpawn--;
+                    unit.transform.parent = enemyList.transform;
+                }
             }
         }
 
@@ -46,6 +66,36 @@ namespace _ROOT.Scripts.GlobalWorld.EnemySpawner
             randomDirection.y += rand.Next((int)(spawnFrom.y * 100), (int)(spawnTo.y * 100)) / 100f;
             randomDirection.x += rand.Next((int)(spawnFrom.x * 100), (int)(spawnTo.x * 100)) / 100f;
             return randomDirection;
+        }
+
+        private bool CheckForCollision(GameObject unit)
+        {
+            var unitCollider = unit.GetComponent<Collider2D>();
+
+            if (!unitCollider)
+            {
+                return true;
+            }
+            
+            foreach (var spawned in FindObjectsOfType<GameObject>())
+            {
+
+                var spawnedCollider = spawned.GetComponent<Collider2D>();
+
+                if (spawnedCollider)
+                {
+                    if (spawnedCollider.bounds.Intersects(unitCollider.bounds))
+                    {
+                        if (ReferenceEquals(spawnedCollider, unitCollider))
+                        {
+                            continue;
+                        }
+                        return true;
+                    }
+                }
+            }
+
+            return false;
         }
     }
 }
