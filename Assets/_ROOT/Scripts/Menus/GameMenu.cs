@@ -1,11 +1,10 @@
-﻿using System;
-using _ROOT.Scripts.Game;
-using Unity.VisualScripting;
-using UnityEditor;
-using UnityEngine;
-
-namespace _ROOT.Scripts.Menus
+﻿namespace _ROOT.Scripts.Menus
 {
+    using System;
+    using Game;
+    using Unity.VisualScripting;
+    using UnityEditor;
+    using UnityEngine;
     public class GameMenu : MonoBehaviour
     {
         [SerializeField] public GameObject menu;

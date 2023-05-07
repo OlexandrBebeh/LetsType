@@ -1,9 +1,8 @@
-﻿using System;
-using _ROOT.Scripts.Saves.Player;
-using _ROOT.Scripts.Saves.Level;
-
-namespace _ROOT.Scripts.Saves
+﻿namespace _ROOT.Scripts.Saves
 {
+    using System;
+    using Player;
+    using Level;
     public class SaveController
     {
         public static SaveController Instance => instance ??= new SaveController();

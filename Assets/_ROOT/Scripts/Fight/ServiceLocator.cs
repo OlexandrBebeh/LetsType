@@ -1,8 +1,7 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-
-namespace _ROOT.Scripts.Fight
+﻿namespace _ROOT.Scripts.Fight
 {
+    using System.Collections.Generic;
+    using System.Linq;
     public class ServiceLocator
     {
         private static List<object> services = new ();

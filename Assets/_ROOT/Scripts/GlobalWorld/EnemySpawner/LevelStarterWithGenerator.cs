@@ -1,9 +1,8 @@
-﻿using _ROOT.Scripts.Game;
-using _ROOT.Scripts.GlobalWorld;
-using UnityEngine;
-
-namespace _ROOT.Scripts.GlobalWorld.EnemySpawner
+﻿namespace _ROOT.Scripts.GlobalWorld.EnemySpawner
 {
+    using Game;
+    using GlobalWorld;
+    using UnityEngine;
     public class LevelStarterWithGenerator : LevelStarter   
     {
         [SerializeField] public EnemySpawner Spawner;

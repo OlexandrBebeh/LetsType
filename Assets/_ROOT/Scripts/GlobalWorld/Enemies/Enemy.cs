@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using UnityEngine;
-
-namespace _ROOT.Scripts.GlobalWorld.Enemies
+﻿namespace _ROOT.Scripts.GlobalWorld.Enemies
 {
+    using System;
+    using System.Collections.Generic;
+    using UnityEngine;
     public abstract class Enemy : MonoBehaviour
     {
         [SerializeField] public string Name;

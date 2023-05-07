@@ -1,10 +1,9 @@
-﻿using System.Linq;
-using _ROOT.Scripts.GlobalWorld;
-using _ROOT.Scripts.Settings;
-using UnityEngine;
-
-namespace _ROOT.Scripts.Fight
+﻿namespace _ROOT.Scripts.Fight
 {
+    using System.Linq;
+    using GlobalWorld;
+    using Settings;
+    using UnityEngine;
     public class FightWatcher : MonoBehaviour
     {
         [SerializeField] public Character character;

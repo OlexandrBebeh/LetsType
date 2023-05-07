@@ -1,9 +1,8 @@
-﻿using _ROOT.Scripts.Tools;
-using UnityEngine;
-using UnityEngine.SceneManagement;
-
-namespace _ROOT.Scripts
+﻿namespace _ROOT.Scripts
 {
+    using Tools;
+    using UnityEngine;
+    using UnityEngine.SceneManagement;
     public class SceneController : MonoBehaviour
     {
         [SerializeField] private string menuScene;

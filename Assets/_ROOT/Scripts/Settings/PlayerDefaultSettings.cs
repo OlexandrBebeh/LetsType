@@ -1,8 +1,8 @@
-﻿using System;
-using UnityEngine;
-
-namespace _ROOT.Scripts.Settings
+﻿namespace _ROOT.Scripts.Settings
 {
+    using System;
+    using UnityEngine;
+    
     [CreateAssetMenu(fileName = nameof(PlayerDefaultSettings), menuName = "LetsType/PlayerDefautSettings")]
     public class PlayerDefaultSettings : ScriptableObject
     {

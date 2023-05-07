@@ -1,16 +1,17 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using _ROOT.Scripts.Dictionary;
-using _ROOT.Scripts.Game;
-using _ROOT.Scripts.GlobalWorld;
-using _ROOT.Scripts.Settings;
-using UnityEngine;
-using Random = UnityEngine.Random;
+﻿using Unity.VisualScripting;
 
 namespace _ROOT.Scripts.Fight
 {
+    using System;
+    using System.Collections;
+    using System.Collections.Generic;
+    using System.Linq;
+    using Dictionary;
+    using Game;
+    using GlobalWorld;
+    using Settings;
+    using UnityEngine;
+    using Random = UnityEngine.Random;
     public class UnitSpawner : MonoBehaviour
     {
         [SerializeField] private float spawnTimeLetter;
@@ -57,6 +58,11 @@ namespace _ROOT.Scripts.Fight
             while (true)
             {
                 var word = GetWord();
+                if (spawnedUnits.ContainsKey(word))
+                {
+                    yield return new WaitForSeconds(1);
+                    continue;
+                }
                 spawnedUnits.Add(word, new List<Unit>());
                 wordsLeft--;
                 var position = GetRandomPosition();
@@ -85,7 +91,6 @@ namespace _ROOT.Scripts.Fight
         private void OnUnitDeath(Unit unit)
         {
             unit.OnDeath -= OnUnitDeath;
-            spawnedUnits[unit.word].Remove(unit);
             if (unit.makeAllAvailable)
             {
                 MakeAllAvailable();
@@ -95,10 +100,14 @@ namespace _ROOT.Scripts.Fight
             {
                 character.Heal();
             }
+            
+            spawnedUnits[unit.word].Remove(unit);
+
             if (spawnedUnits[unit.word].Count == 0)
             {
                 spawnedUnits.Remove(unit.word);
             }
+
             if (IsFinishSpawning())
             {
                 inputProvider.OnInput -= OnInput;
@@ -159,11 +168,20 @@ namespace _ROOT.Scripts.Fight
                 bool used = true;
                 foreach (var lst in spawnedUnits)
                 {
-                    if (lst.Value.Count != 0 && lst.Value.First().isActive && lst.Value.First().TargetChar == inputChar)
+                    if (lst.Value.Count != 0)
                     {
-                        lst.Value.First().Die();
-                        used = false;
-                        break;
+                        if (lst.Value.First().IsUnityNull())
+                        {
+                            lst.Value.Remove(lst.Value.First());
+                        }
+                    
+                        if (lst.Value.First().isActive 
+                            && lst.Value.First().TargetChar == inputChar)
+                        {
+                            lst.Value.First().Die();
+                            used = false;
+                            break;
+                        }
                     }
                 }
 

@@ -1,9 +1,9 @@
-﻿using System;
-using _ROOT.Scripts.Game;
-using UnityEngine;
-
-namespace _ROOT.Scripts.GlobalWorld
+﻿namespace _ROOT.Scripts.GlobalWorld
 {
+    using System;
+    using Game;
+    using UnityEngine;
+
     public class Watcher : MonoBehaviour
     {
         [SerializeField] GameObject GlobalInterface;

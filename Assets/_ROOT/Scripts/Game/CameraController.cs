@@ -1,9 +1,8 @@
-﻿using _ROOT.Scripts.Tools;
-using Cinemachine;
-using UnityEngine;
-
-namespace _ROOT.Scripts.Game
+﻿namespace _ROOT.Scripts.Game
 {
+    using Tools;
+    using Cinemachine;
+    using UnityEngine;
     public class CameraController : Singleton<CameraController>
     {
         [SerializeField] private CinemachineVirtualCamera worldCamera;

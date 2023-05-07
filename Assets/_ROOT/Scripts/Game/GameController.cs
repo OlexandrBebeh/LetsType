@@ -1,13 +1,12 @@
-﻿using System.Threading.Tasks;
-using _ROOT.Scripts.GlobalWorld;
-using _ROOT.Scripts.GlobalWorld.Enemies;
-using _ROOT.Scripts.Saves;
-using _ROOT.Scripts.Saves.Level;
-using _ROOT.Scripts.Tools;
-using UnityEngine;
-
-namespace _ROOT.Scripts.Game
+﻿namespace _ROOT.Scripts.Game
 {
+    using System.Threading.Tasks;
+    using GlobalWorld;
+    using GlobalWorld.Enemies;
+    using Saves;
+    using Saves.Level;
+    using Tools;
+    using UnityEngine;
     public class GameController : Singleton<GameController>
     {
         [SerializeField] private SceneController sceneController;

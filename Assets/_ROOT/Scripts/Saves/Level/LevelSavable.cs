@@ -1,7 +1,6 @@
-﻿using System;
-
-namespace _ROOT.Scripts.Saves.Level
+﻿namespace _ROOT.Scripts.Saves.Level
 {
+    using System;
     public class LevelSavable : SavableComponent<LevelSave>
     {
         public static LevelSavable Instance => instance ??= new LevelSavable();

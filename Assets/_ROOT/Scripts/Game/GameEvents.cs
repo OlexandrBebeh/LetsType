@@ -1,9 +1,9 @@
-﻿using System;
-using _ROOT.Scripts.GlobalWorld;
-using _ROOT.Scripts.GlobalWorld.Enemies;
-
-namespace _ROOT.Scripts.Game
+﻿namespace _ROOT.Scripts.Game
 {
+    using System;
+    using GlobalWorld;
+    using GlobalWorld.Enemies;
+
     public static class GameEvents
     {
         public static event Action<string> OnFightStart;

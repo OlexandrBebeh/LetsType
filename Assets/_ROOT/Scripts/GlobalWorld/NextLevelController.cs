@@ -1,11 +1,10 @@
-﻿using System;
-using _ROOT.Scripts.Game;
-using _ROOT.Scripts.Saves.Player;
-using TMPro;
-using UnityEngine;
-
-namespace _ROOT.Scripts.GlobalWorld
+﻿namespace _ROOT.Scripts.GlobalWorld
 {
+    using System;
+    using Game;
+    using Saves.Player;
+    using TMPro;
+    using UnityEngine;
     public class NextLevelController : MonoBehaviour
     {
         [SerializeField] public GameObject plateGameObject;

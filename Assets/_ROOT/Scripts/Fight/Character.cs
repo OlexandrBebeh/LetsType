@@ -1,11 +1,10 @@
-﻿using System;
-using _ROOT.Scripts.Game;
-using _ROOT.Scripts.GlobalWorld;
-using _ROOT.Scripts.Saves.Player;
-using UnityEngine;
-
-namespace _ROOT.Scripts.Fight
+﻿namespace _ROOT.Scripts.Fight
 {
+    using System;
+    using Game;
+    using GlobalWorld;
+    using Saves.Player;
+    using UnityEngine;
     public class Character : MonoBehaviour
     {
         

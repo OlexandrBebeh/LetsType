@@ -1,10 +1,9 @@
-﻿using System;
-using _ROOT.Scripts.Settings;
-using UnityEngine;
-using Random = UnityEngine.Random;
-
-namespace _ROOT.Scripts.Fight
+﻿namespace _ROOT.Scripts.Fight
 {
+    using System;
+    using Settings;
+    using UnityEngine;
+    using Random = UnityEngine.Random;
     public class UnitModificator
     {
         public float restoreChance;

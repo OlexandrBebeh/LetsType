@@ -1,13 +1,12 @@
-﻿using System;
-using _ROOT.Scripts.Game;
-using _ROOT.Scripts.GlobalWorld.Enemies;
-using _ROOT.Scripts.Saves;
-using _ROOT.Scripts.Saves.Player;
-using _ROOT.Scripts.Tools;
-using UnityEngine;
-
-namespace _ROOT.Scripts.GlobalWorld
+﻿namespace _ROOT.Scripts.GlobalWorld
 {
+    using System;
+    using Game;
+    using GlobalWorld.Enemies;
+    using Saves;
+    using Saves.Player;
+    using Tools;
+    using UnityEngine;
     public class Player : MonoBehaviour
     {
         [SerializeField] public float Speed;

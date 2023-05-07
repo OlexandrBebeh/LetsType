@@ -1,8 +1,7 @@
-﻿using _ROOT.Scripts.Saves.Player;
-using UnityEngine;
-
-namespace _ROOT.Scripts.Fight
+﻿namespace _ROOT.Scripts.Fight
 {
+    using Saves.Player;
+    using UnityEngine;
     public class RangeChecker : MonoBehaviour
     {
         private void OnTriggerEnter2D(Collider2D other)

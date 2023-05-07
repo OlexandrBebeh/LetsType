@@ -1,9 +1,8 @@
-﻿using System;
-using _ROOT.Scripts.Saves.Level;
-using _ROOT.Scripts.Saves.Player;
-
-namespace _ROOT.Scripts.Saves
+﻿namespace _ROOT.Scripts.Saves
 {
+    using System;
+    using Level;
+    using Player;
     public class SaveModel
     {
         public Header header;

@@ -1,14 +1,13 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using _ROOT.Scripts.Game;
-using _ROOT.Scripts.GlobalWorld;
-using TMPro;
-using UnityEngine;
-
-namespace _ROOT.Scripts.DialogSystem
+﻿namespace _ROOT.Scripts.DialogSystem
 {
+    using System;
+    using System.Collections;
+    using System.Collections.Generic;
+    using System.Linq;
+    using Game;
+    using GlobalWorld;
+    using TMPro;
+    using UnityEngine;
     public class DialogTrigger : MonoBehaviour
     {
         [SerializeField] private Dialog dialog;

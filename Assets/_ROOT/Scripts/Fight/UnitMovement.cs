@@ -1,7 +1,6 @@
-﻿using UnityEngine;
-
-namespace _ROOT.Scripts.Fight
+﻿namespace _ROOT.Scripts.Fight
 {
+    using UnityEngine;
     public class UnitMovement : MonoBehaviour
     {
         [SerializeField] private Unit unit;

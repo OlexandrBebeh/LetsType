@@ -1,10 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.IO;
-using UnityEngine;
-
-namespace _ROOT.Scripts.Dictionary
+﻿namespace _ROOT.Scripts.Dictionary
 {
+    using System.Collections;
+    using System.Collections.Generic;
+    using System.IO;
+    using UnityEngine;
     public class WordsGenerator
     {
         private Dictionary<int, List<string>> dictionary = new ();

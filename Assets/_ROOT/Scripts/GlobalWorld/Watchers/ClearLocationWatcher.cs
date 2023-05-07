@@ -1,14 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using _ROOT.Scripts.DialogSystem;
-using _ROOT.Scripts.Game;
-using _ROOT.Scripts.GlobalWorld.Enemies;
-using _ROOT.Scripts.Saves.Player;
-using Unity.VisualScripting;
-using UnityEngine;
-
-namespace _ROOT.Scripts.GlobalWorld
+﻿namespace _ROOT.Scripts.GlobalWorld
 {
+    using System;
+    using System.Collections.Generic;
+    using DialogSystem;
+    using Game;
+    using GlobalWorld.Enemies;
+    using Saves.Player;
+    using Unity.VisualScripting;
+    using UnityEngine;
     public class ClearLocationWatcher : Watcher
     {
         [SerializeField] List<GameObject> objectsToDestroy;

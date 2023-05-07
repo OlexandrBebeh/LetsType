@@ -1,10 +1,9 @@
-﻿using _ROOT.Scripts.Game;
-using _ROOT.Scripts.Saves;
-using _ROOT.Scripts.Saves.Level;
-using UnityEngine;
-
-namespace _ROOT.Scripts.Menus
+﻿namespace _ROOT.Scripts.Menus
 {
+    using Game;
+    using Saves;
+    using Saves.Level;
+    using UnityEngine;
     public class StartMenu : MonoBehaviour
     {
         public void ContinueGame()

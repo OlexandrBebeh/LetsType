@@ -1,8 +1,7 @@
-﻿using _ROOT.Scripts.Saves;
-using UnityEngine;
-
-namespace _ROOT.Scripts.Game
+﻿namespace _ROOT.Scripts.Game
 {
+    using Saves;
+    using UnityEngine;
     public class AppStarter : MonoBehaviour
     {
         private void Awake()

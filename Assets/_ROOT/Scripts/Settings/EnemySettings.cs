@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using UnityEngine;
-
-namespace _ROOT.Scripts.Settings
+﻿namespace _ROOT.Scripts.Settings
 {
+    using System;
+    using System.Collections.Generic;
+    using UnityEngine;
+    
     [CreateAssetMenu(fileName = nameof(EnemySettings), menuName = "LetsType/EnemySettings")]
     public class EnemySettings : ScriptableObject
     {

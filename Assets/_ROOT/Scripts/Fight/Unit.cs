@@ -1,9 +1,8 @@
-using System;
-using TMPro;
-using UnityEngine;
-
 namespace _ROOT.Scripts.Fight
 {
+    using System;
+    using TMPro;
+    using UnityEngine;
     public class Unit : MonoBehaviour
     {
         [SerializeField] private TMP_Text label;
@@ -69,6 +68,7 @@ namespace _ROOT.Scripts.Fight
 
         public void Destroy()
         {
+            OnDeath?.Invoke(this);
             Destroy(gameObject);
         }
         public Vector3 GetTarget()

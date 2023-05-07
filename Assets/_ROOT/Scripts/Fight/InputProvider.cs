@@ -1,9 +1,8 @@
-﻿using System;
-using System.Linq;
-using UnityEngine;
-
-namespace _ROOT.Scripts.Fight
+﻿namespace _ROOT.Scripts.Fight
 {
+    using System;
+    using System.Linq;
+    using UnityEngine;
     public class InputProvider : MonoBehaviour
     {
         public event Action<char> OnInput;

@@ -1,8 +1,4 @@
-﻿using System.Collections.Generic;
-using Newtonsoft.Json;
-using UnityEngine;
-
-namespace _ROOT.Scripts.Saves
+﻿namespace _ROOT.Scripts.Saves
 {
     public interface ISavable
     {

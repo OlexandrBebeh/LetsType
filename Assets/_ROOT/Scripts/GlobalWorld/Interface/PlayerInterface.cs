@@ -1,10 +1,9 @@
-﻿using System;
-using _ROOT.Scripts.Saves.Player;
-using TMPro;
-using UnityEngine;
-
-namespace _ROOT.Scripts.GlobalWorld.Interface
+﻿namespace _ROOT.Scripts.GlobalWorld.Interface
 {
+    using System;
+    using Saves.Player;
+    using TMPro;
+    using UnityEngine;
     public class PlayerInterface : MonoBehaviour
     {
         [SerializeField] private TMP_Text HeartLabel;

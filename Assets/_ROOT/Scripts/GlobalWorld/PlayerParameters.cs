@@ -1,7 +1,6 @@
-﻿using _ROOT.Scripts.Tools;
-
-namespace _ROOT.Scripts.GlobalWorld
+﻿namespace _ROOT.Scripts.GlobalWorld
 {
+    using Tools;
     public class PlayerParameters : Singleton<PlayerParameters>
     {
         public int MaxHearts { get; set; }

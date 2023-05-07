@@ -1,11 +1,10 @@
-﻿using System.IO;
-using System.Linq;
-using _ROOT.Scripts.Saves.Player;
-using Newtonsoft.Json;
-using UnityEngine;
-
-namespace _ROOT.Scripts.Saves
+﻿namespace _ROOT.Scripts.Saves
 {
+    using System.IO;
+    using System.Linq;
+    using Saves.Player;
+    using Newtonsoft.Json;
+    using UnityEngine;
     public class SaveWorker
     {
         private const string Path = "save.dat";

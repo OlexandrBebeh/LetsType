@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using TMPro;
-using UnityEngine;
-
-namespace _ROOT.Scripts.DialogSystem
+﻿namespace _ROOT.Scripts.DialogSystem
 {
+    using System;
+    using System.Collections;
+    using TMPro;
+    using UnityEngine;
     public class Dialog : MonoBehaviour
     {
         [SerializeField] private TextMeshProUGUI textMeshProUGUI;

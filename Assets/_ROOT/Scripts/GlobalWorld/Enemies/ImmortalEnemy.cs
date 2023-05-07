@@ -1,7 +1,6 @@
-﻿using System;
-
-namespace _ROOT.Scripts.GlobalWorld.Enemies
+﻿namespace _ROOT.Scripts.GlobalWorld.Enemies
 {
+    using System;
     public class ImmortalEnemy : Enemy
     {
         public override void DestroySelf()  

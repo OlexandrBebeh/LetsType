@@ -1,8 +1,7 @@
-﻿using _ROOT.Scripts.Settings;
-using UnityEngine;
-
-namespace _ROOT.Scripts.Saves.Player
+﻿namespace _ROOT.Scripts.Saves.Player
 {
+    using Settings;
+    using UnityEngine;
     public class PlayerSavable : SavableComponent<PlayerSave>
     {
         public static PlayerSavable Instance => instance ??= new PlayerSavable();

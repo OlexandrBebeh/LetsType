@@ -1,8 +1,7 @@
-﻿using TMPro;
-using UnityEngine;
-
-namespace _ROOT.Scripts.Fight.Interface
+﻿namespace _ROOT.Scripts.Fight.Interface
 {
+    using TMPro;
+    using UnityEngine;
     public class FightInterface : MonoBehaviour
     {
         [SerializeField] private TMP_Text HeartLabel;

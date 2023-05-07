@@ -1,9 +1,8 @@
-﻿using _ROOT.Scripts.Saves.Player;
-using TMPro;
-using UnityEngine;
-
-namespace _ROOT.Scripts.GlobalWorld.Shops
+﻿namespace _ROOT.Scripts.GlobalWorld.Shops
 {
+    using Saves.Player;
+    using TMPro;
+    using UnityEngine;
     public class Shop : MonoBehaviour
     {
         [SerializeField] public GameObject OtherGameObject;
