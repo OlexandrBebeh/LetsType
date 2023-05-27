@@ -27,5 +27,11 @@
         {
             Application.Quit();
         }
+        
+        public void DemoGame()
+        {
+            SaveController.Instance.PrepareDemo();
+            GameController.Instance.StartDemo();
+        }
     }
 }

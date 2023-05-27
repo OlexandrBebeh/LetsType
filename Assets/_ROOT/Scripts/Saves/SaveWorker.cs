@@ -1,4 +1,6 @@
-﻿namespace _ROOT.Scripts.Saves
+﻿using _ROOT.Scripts.Saves.Level;
+
+namespace _ROOT.Scripts.Saves
 {
     using System.IO;
     using System.Linq;
@@ -31,6 +33,20 @@
                 return false;
             }
             return true;
+        }
+        
+        public SaveModel LoadDemo()
+        {
+            var saveModel = new SaveModel();
+            saveModel.PlayerSave = new PlayerSave();
+            saveModel.header = new Header();
+            saveModel.LevelSave = new LevelSave();
+
+            saveModel.PlayerSave.Gold = 100;
+            saveModel.PlayerSave.Hearts = 5;
+            saveModel.PlayerSave.Range = 20;
+
+            return saveModel;
         }
     }
 }

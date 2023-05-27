@@ -15,6 +15,8 @@
 
         [SerializeField] private PlayerProvider playerProvider;
         
+        private bool is_demo;
+
         private GameState state;
         
         public GameState GetState()
@@ -42,6 +44,14 @@
             state = GameState.level;
         }
         
+        public void StartDemo()
+        {
+            sceneController.UnloadMenu();
+            sceneController.SwitchToLevelScene(-1);
+            is_demo = true;
+            state = GameState.level;
+        }
+        
         public void StartNextLevel()
         {
             sceneController.UnloadLevelScene(LevelSavable.Instance.current_level);
@@ -62,8 +72,10 @@
 
                    break;
                case GameState.level:
-                   sceneController.UnloadLevelScene(LevelSavable.Instance.current_level);
+                   int level = is_demo ? -1 : LevelSavable.Instance.current_level;
+                   sceneController.UnloadLevelScene(level);
                    sceneController.LoadMenu();
+                   is_demo = false;
                    state = GameState.menu;
 
                    break;

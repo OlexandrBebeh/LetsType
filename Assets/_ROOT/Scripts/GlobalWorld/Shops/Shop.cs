@@ -23,14 +23,13 @@
         private void Awake()
         {
             OtherGameObject.SetActive(false);
-            ItemsLeft.SetText("Items left:" + BuyLimit);
+            ItemsLeft.SetText("Items left: " + BuyLimit);
         }
 
         private void Update()
         {
             HeartLabel.SetText(CalculatePrice(PlayerSavable.Instance.Hearts).ToString());
             RangeLablePanel.SetText(CalculatePrice(PlayerSavable.Instance.Range - rangeDelim).ToString());
-
         }
 
         private void OnTriggerEnter2D(Collider2D other)

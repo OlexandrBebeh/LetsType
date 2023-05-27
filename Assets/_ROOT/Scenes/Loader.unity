@@ -564,7 +564,7 @@ MonoBehaviour:
   menuScene: Menu
   fightScene: Fighting
   levelScene: Level_
-  lastSceneWithoutAutoGenerate: 2
+  lastSceneWithoutAutoGenerate: 5
   levelGenerateScene: ForeverLevel
 --- !u!114 &417272136
 MonoBehaviour:

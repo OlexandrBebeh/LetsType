@@ -39,7 +39,11 @@
         public void SwitchToLevelScene(int level)
         {
             string str;
-            if (level < 10)
+            if (level == -1)
+            {
+                str = "demo";
+            }
+            else if (level < 10)
             {
                 str = levelScene + "0" + level;
             }
@@ -58,7 +62,11 @@
         public void UnloadLevelScene(int level)
         {
             string str;
-            if (level < 10)
+            if (level == -1)
+            {
+                str = "demo";
+            }
+            else if (level < 10)
             {
                 str = levelScene + "0" + level;
             }
@@ -73,7 +81,7 @@
             }
             UnloadScene(str);
         }
-
+        
         private void LoadScene(string sceneName)
         {
             SceneManager.LoadScene(sceneName, LoadSceneMode.Additive);

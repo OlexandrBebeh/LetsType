@@ -1,10 +1,13 @@
-﻿namespace _ROOT.Scripts.GlobalWorld.EnemySpawner
+﻿
+namespace _ROOT.Scripts.GlobalWorld.EnemySpawner
 {
     using Saves.Level;
     using UnityEngine;
     using System;
     using System.Collections.Generic;
     using Random = System.Random;
+    using Enemies;
+
     public class EnemySpawner : MonoBehaviour
     {
         private Random rand;
@@ -54,6 +57,8 @@
                 {
                     enemyToSpawn--;
                     unit.transform.parent = enemyList.transform;
+                    var enemy = unit.GetComponentInParent<Enemy>();
+                    enemy.level = LevelSavable.Instance.current_level;
                 }
             }
         }

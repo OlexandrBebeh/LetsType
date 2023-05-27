@@ -8,10 +8,20 @@
     using GlobalWorld;
     using TMPro;
     using UnityEngine;
+    
+    ///<summary>
+    /// Клас, який реагує на вхід до колайдеру, щоб запустити діалог
+    ///</summary>
     public class DialogTrigger : MonoBehaviour
     {
+        ///<summary>
+        /// Діалог для показу
+        ///</summary>
         [SerializeField] private Dialog dialog;
         
+        ///<summary>
+        /// При перетині гравцем колайдеру розпочинається діалог
+        ///</summary>
         private void OnTriggerEnter2D(Collider2D other)
         {
             var player = other.gameObject.GetComponentInParent<Player>();
@@ -26,6 +36,9 @@
             }
         }
 
+        ///<summary>
+        /// Припинення відслідковування діалогу при визоді із колайдеру
+        ///</summary>
         private void OnTriggerExit2D(Collider2D other)
         {
             var player = other.gameObject.GetComponentInParent<Player>();
@@ -37,6 +50,9 @@
             }
         }
 
+        ///<summary>
+        /// Метод для задання діалога
+        ///</summary>
         public void SetDialog(Dialog newDialog)
         {
             dialog = newDialog;

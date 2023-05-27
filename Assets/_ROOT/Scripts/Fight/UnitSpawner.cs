@@ -146,13 +146,13 @@ namespace _ROOT.Scripts.Fight
             spawnedUnits = new Dictionary<string, List<Unit>>();
             camera = Camera.main;
             wordsGenerator = new WordsGenerator();
-            spawnTimeLetter = letterSpawnDelim / stats.speed;
             enemyStats = stats;
             calculatedSpeed = stats.speed + stats.speedPerLevel * level;
+            spawnTimeLetter = letterSpawnDelim / calculatedSpeed;
             calculatedWordsAmount = stats.wordsAmount + stats.wordsAmountPerLevel * level;
             finishSpawning = false;
             modificator.Init(stats);
-            charactersLeft = calculatedWordsAmount * stats.wordsLength.Max() / stats.mistakeFactor;
+            charactersLeft = stats.mistakeFactor;
         }
 
         public void StartSpawn()

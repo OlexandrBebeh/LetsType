@@ -1199,10 +1199,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed47ba13605246f1aeb35efc8acce736, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyCount: 12
-  deltaEnemyCount: 0
+  enemyCount: 5
+  deltaEnemyCount: 3
   unitsForSpawn:
   - {fileID: 6569073832002817721, guid: 9f0e9c05f19076541a339383b55ea9c0, type: 3}
+  - {fileID: 261932533084038735, guid: c0e3b7a30dd3ecc469c24a73647127f0, type: 3}
   spawnFrom: {x: -288.4, y: -69.6, z: 0}
   spawnTo: {x: -74.9, y: 50.6, z: 0}
   enemyList: {fileID: 2032083197}

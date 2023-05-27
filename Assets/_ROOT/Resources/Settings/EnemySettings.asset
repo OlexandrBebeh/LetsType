@@ -21,6 +21,8 @@ MonoBehaviour:
     restoreChance: 0
     allAvailableChance: 0
     mistakeFactor: 2
+    speedPerLevel: 0
+    wordsAmountPerLevel: 0
   - id: danger
     wordsAmount: 10
     wordsLength: 030000000400000005000000
@@ -29,6 +31,8 @@ MonoBehaviour:
     restoreChance: 0
     allAvailableChance: 0
     mistakeFactor: 2
+    speedPerLevel: 0
+    wordsAmountPerLevel: 0
   - id: bee
     wordsAmount: 5
     wordsLength: 0300000004000000
@@ -37,6 +41,8 @@ MonoBehaviour:
     restoreChance: 0
     allAvailableChance: 0
     mistakeFactor: 2
+    speedPerLevel: 0
+    wordsAmountPerLevel: 0
   - id: Boss
     wordsAmount: 10
     wordsLength: 0300000006000000
@@ -45,14 +51,18 @@ MonoBehaviour:
     restoreChance: 0
     allAvailableChance: 0
     mistakeFactor: 2
+    speedPerLevel: 1
+    wordsAmountPerLevel: 1
   - id: slug
-    wordsAmount: 4
+    wordsAmount: 2
     wordsLength: 0400000005000000
     speed: 5
-    deltaSpeed: 0
-    restoreChance: 0
-    allAvailableChance: 0
-    mistakeFactor: 2
+    deltaSpeed: 1
+    restoreChance: 0.1
+    allAvailableChance: 0.1
+    mistakeFactor: 1
+    speedPerLevel: 0.2
+    wordsAmountPerLevel: 1
   - id: mimik
     wordsAmount: 3
     wordsLength: 0200000003000000
@@ -61,6 +71,8 @@ MonoBehaviour:
     restoreChance: 0.5
     allAvailableChance: 0.5
     mistakeFactor: 2
+    speedPerLevel: 0
+    wordsAmountPerLevel: 0
   - id: level3
     wordsAmount: 5
     wordsLength: 0400000005000000
@@ -69,3 +81,5 @@ MonoBehaviour:
     restoreChance: 0.1
     allAvailableChance: 0.1
     mistakeFactor: 2
+    speedPerLevel: 0
+    wordsAmountPerLevel: 0

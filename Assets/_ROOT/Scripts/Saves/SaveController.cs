@@ -7,6 +7,7 @@
     {
         public static SaveController Instance => instance ??= new SaveController();
         private static SaveController instance;
+        private bool is_demo = false;
 
         private readonly SaveWorker saveWorker;
 
@@ -17,6 +18,7 @@
 
         public void LoadSave()
         {
+            is_demo = false;
             var saveModel = saveWorker.Load();
             PlayerSavable.Instance.Deserialize(saveModel.PlayerSave);
             LevelSavable.Instance.Deserialize(saveModel.LevelSave);
@@ -24,6 +26,10 @@
 
         public void SaveState()
         {
+            if (is_demo)
+            {
+                return;
+            }
             var saveModel = new SaveModel();
             saveModel.header = new Header();
             saveModel.header.time = DateTime.Now;
@@ -47,6 +53,15 @@
                 saveModel.LevelSave = LevelSavable.Instance.PrepareInitial();
                 saveWorker.Save(saveModel);
             }
+        }
+
+        public void PrepareDemo()
+        {
+            is_demo = true;
+            
+            var saveModel = saveWorker.LoadDemo();
+
+            PlayerSavable.Instance.Deserialize(saveModel.PlayerSave);
         }
     }
 }
