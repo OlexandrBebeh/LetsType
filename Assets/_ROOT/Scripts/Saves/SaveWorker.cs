@@ -42,9 +42,9 @@ namespace _ROOT.Scripts.Saves
             saveModel.header = new Header();
             saveModel.LevelSave = new LevelSave();
 
-            saveModel.PlayerSave.Gold = 100;
+            saveModel.PlayerSave.Gold = 1000;
             saveModel.PlayerSave.Hearts = 5;
-            saveModel.PlayerSave.Range = 20;
+            saveModel.PlayerSave.Range = 10;
 
             return saveModel;
         }

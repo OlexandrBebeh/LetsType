@@ -28,12 +28,12 @@ namespace _ROOT.Scripts.GlobalWorld.EnemySpawner
         
         private void Awake()
         {
-            rand = new Random(LevelSavable.Instance.level_seed);
+            rand = new Random(LevelSavable.Instance.level_seed * LevelSavable.Instance.current_level);
         }
 
         public void SpawnEnemies()
         {
-            var enemyToSpawn = enemyCount + rand.Next(0, deltaEnemyCount);
+            var enemyToSpawn = enemyCount + rand.Next(0, LevelSavable.Instance.current_level + deltaEnemyCount);
             int attempts = 0;
             while (enemyToSpawn > 0)
             {
@@ -59,6 +59,7 @@ namespace _ROOT.Scripts.GlobalWorld.EnemySpawner
                     unit.transform.parent = enemyList.transform;
                     var enemy = unit.GetComponentInParent<Enemy>();
                     enemy.level = LevelSavable.Instance.current_level;
+                    enemy.Reward *= LevelSavable.Instance.current_level;
                 }
             }
         }

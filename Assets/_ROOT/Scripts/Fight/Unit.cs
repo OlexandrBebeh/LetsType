@@ -8,6 +8,8 @@ namespace _ROOT.Scripts.Fight
         [SerializeField] private TMP_Text label;
 
         [SerializeField] public float speed;
+        
+        [SerializeField] public int lives = 1;
 
         [SerializeField] public SpriteRenderer sprite;
 
@@ -56,14 +58,18 @@ namespace _ROOT.Scripts.Fight
         {
             if (inputChar == TargetChar && isActive)
             {
+                TakeHit();
                 Die();
             }
         }
 
         public void Die()
         {
-            OnDeath?.Invoke(this);
-            Destroy(gameObject);
+            if (lives <= 0)
+            {
+                OnDeath?.Invoke(this);
+                Destroy(gameObject);
+            }
         }
 
         public void Destroy()
@@ -74,6 +80,11 @@ namespace _ROOT.Scripts.Fight
         public Vector3 GetTarget()
         {
             return Target;
+        }
+
+        public void TakeHit()
+        {
+            lives--;
         }
     }
 }

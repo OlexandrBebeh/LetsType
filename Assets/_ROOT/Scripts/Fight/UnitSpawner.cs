@@ -178,6 +178,7 @@ namespace _ROOT.Scripts.Fight
                         if (lst.Value.First().isActive 
                             && lst.Value.First().TargetChar == inputChar)
                         {
+                            lst.Value.First().TakeHit();
                             lst.Value.First().Die();
                             used = false;
                             break;
